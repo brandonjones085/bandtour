@@ -1,0 +1,25 @@
+
+<body>
+    <div class="container">
+<label id="example-radio-group-label">Select Your Band Type</label>
+<form [formGroup]="this.playerService.selectTypeForm">
+<mat-radio-group formControlName="type"  aria-label="Select an option">
+    <br>
+    <mat-radio-button value="pop">Pop</mat-radio-button>
+    <br>
+    <mat-radio-button value="ska"  >Ska</mat-radio-button>
+    <br>
+    <mat-radio-button value="gut" >Gutter</mat-radio-button>
+  </mat-radio-group>
+  <br>
+  <section>
+  
+    <div class="example-button-row">
+      <button (click)="onSubmit()" mat-button>Select</button>
+    </div>
+    
+  </section>
+</form>
+
+</div>
+</body>

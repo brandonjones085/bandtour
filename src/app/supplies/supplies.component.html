@@ -1,0 +1,17 @@
+<body>
+<h4>Load up on supplies before you hit the road</h4>
+
+<h5>What would you like to buy?</h5>
+<h2>{{this.cash}}</h2>
+
+<form [formGroup]="this.playerService.suppliesForm">
+    <label for="burritos">Burritos $5 each: </label>
+    <input type="number" formControlName="burritos">
+    <button (click)="onSubmit()">Submit</button>
+</form>
+<div *ngIf="this.valid === false">
+<h4 style="color:red">Not enough cash bruh</h4>
+<h5 style="color:red">Try again</h5>
+</div>
+
+</body>
