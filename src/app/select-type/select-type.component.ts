@@ -15,6 +15,7 @@ export class SelectTypeComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.playerService.updateCurrent("/selectType"); 
   }
 
 
@@ -32,6 +33,7 @@ export class SelectTypeComponent implements OnInit {
     }
     this.router.navigate(['/supplies']); 
     this.playerService.selectType(type)
+   
     .then(res=>{
 
     })

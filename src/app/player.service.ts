@@ -13,15 +13,6 @@ export class PlayerService {
   playerCash: number
   private ip: string; 
 
-  public getIP(v){
-    this.ip = v; 
-
-  }
-
-  returnIP(){
-    return this.ip
-  }
-
   deletePlayer(data){
     return this.firestore.collection("player").doc(data.id).delete(); 
   }
@@ -45,14 +36,16 @@ export class PlayerService {
     })
   }
 
-
   form = new FormGroup({
-    ip: new FormControl(),
-    id: new FormControl(), 
-    name: new FormControl(), 
-    health: new FormControl(), 
-    streetCred: new FormControl()
+    ip: new FormControl(""), 
+    id: new FormControl(1), 
+    name: new FormControl(" "), 
+    health: new FormControl(100), 
+    streetCred: new FormControl(0),
+    current: new FormControl("")
   })
+
+
 
   addPlayerTwoForm = new FormGroup({
     id: new FormControl(2),
@@ -87,6 +80,16 @@ export class PlayerService {
     burritos: new FormControl()
   })
 
+  sendIP(ip){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/' + this.playerid).update({ip})
+      .then(res=>{
+
+      }, err=>reject(err))
+    })
+    
+  }
+
   addSupplies(supplies){
     return new Promise<any>((resolve, reject)=>{
       this.playerCash = supplies.cash; 
@@ -120,6 +123,12 @@ export class PlayerService {
   updateCash(newTotal){
     return new Promise<any>((resolve, reject)=>{
       this.firestore.doc('player/'+this.playerid).update({"type.cash" : newTotal})
+    })
+  }
+
+  updateCurrent(com){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({"one.current" : com}); 
     })
   }
 

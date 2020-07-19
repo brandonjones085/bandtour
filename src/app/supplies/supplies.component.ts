@@ -28,6 +28,8 @@ export class SuppliesComponent implements OnInit {
       this.cash = this.players[0].type.cash; 
     })
 
+    this.playerService.updateCurrent("/supplies"); 
+
   }
   
   
@@ -43,6 +45,7 @@ export class SuppliesComponent implements OnInit {
       this.playerService.addSupplies(stuff)
       let newTotal = this.cash - total
       this.playerService.updateCash(newTotal)
+  
     .then(res=>{})
     this.router.navigate(['/choice'])
     }

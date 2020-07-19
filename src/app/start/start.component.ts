@@ -4,16 +4,21 @@ import { Player } from 'src/app/player.model';
 import { Router } from '@angular/router'; 
 import { IpServiceService} from 'src/app/ip-service.service'
 
+
+
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.css']
 })
-export class StartComponent implements OnInit {
 
+export class StartComponent implements OnInit {
+  
   players: Player[]; 
   playerId: string; 
   ipAddress: string; 
+  newUser: true; 
+  current: "/start"; 
   constructor(public playerService: PlayerService, private router: Router, private ip: IpServiceService) { }
 
   ngOnInit(): void{
@@ -29,6 +34,7 @@ export class StartComponent implements OnInit {
     })
   }
 
+
   //gets client IP for database 
   getIP(){
     this.ip.getIpAddress().subscribe((res: any)=>{
@@ -39,14 +45,17 @@ export class StartComponent implements OnInit {
   delete = data =>{this.playerService.deletePlayer(data)}
 
   onSubmit(){
-    this.playerService.getIP(this.ipAddress);
-    this.playerService.form.setValue({ip: this.ipAddress, id: 1, name: "test", health: 100, streetCred: 0})
+   
     let one = this.playerService.form.value; 
+    one.ip = this.ipAddress;  
+    one.current = "/start"; //used to track users state
     this.playerService.createPlayer(one)
     .then(res=>{
-
+      this.playerService.sendIP(this.ipAddress); 
       
     })
+
+    
     this.router.navigate(['/addplayertwo'])
    
   }

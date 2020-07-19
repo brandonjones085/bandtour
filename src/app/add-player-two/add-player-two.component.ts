@@ -13,12 +13,14 @@ export class AddPlayerTwoComponent implements OnInit {
   constructor(private router: Router, public playerService: PlayerService) { }
   players: Player[]; 
   ngOnInit(): void {
+    this.playerService.updateCurrent("/addplayertwo")
   }
 
   onSubmit(){
    
     let data = this.playerService.addPlayerTwoForm.value; 
     this.playerService.addNewPlayer(data)
+    
     .then(res=>{
 
     })
