@@ -7,6 +7,19 @@
 <form [formGroup]="this.playerService.suppliesForm">
     <label for="burritos">Burritos $5 each: </label>
     <input type="number" formControlName="burritos">
+    <br>
+    <label for="jerky">Beef Jerky $5 each: </label>
+    <input type="number" formControlName="jerky">
+    <br>
+    <label for="nachos">Nachos $5 each: </label>
+    <input type="number" formControlName="nachos">
+    <br>
+    <label for="sardines">Sardines $5 each: </label>
+    <input type="number" formControlName="sardines">
+    <br>
+    <label for="shirts">Merchandise (t-shirts) $10 each: </label>
+    <input type="number" formControlName="shirts">
+    <br>
     <button (click)="onSubmit()">Submit</button>
 </form>
 <div *ngIf="this.valid === false">

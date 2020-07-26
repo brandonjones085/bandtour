@@ -11,14 +11,18 @@ export class PlayerService {
   constructor(private firestore: AngularFirestore) { }
   playerid: string 
   playerCash: number
-  private ip: string; 
+  burritos: number
+  jerky: number 
+  sardines: number 
+  nachos: number 
+  shirts: number 
 
   deletePlayer(data){
     return this.firestore.collection("player").doc(data.id).delete(); 
   }
 
   getPlayer(){
-    return this.firestore.collection("player").snapshotChanges(); 
+    return this.firestore.collection("player").snapshotChanges();
   }
 
 
@@ -77,7 +81,11 @@ export class PlayerService {
   })
 
   suppliesForm = new FormGroup({
-    burritos: new FormControl()
+    burritos: new FormControl(), 
+    jerky: new FormControl(), 
+    nachos: new FormControl(), 
+    sardines: new FormControl(), 
+    shirts: new FormControl()
   })
 
   sendIP(ip){
@@ -131,5 +139,13 @@ export class PlayerService {
       this.firestore.doc('player/'+this.playerid).update({"one.current" : com}); 
     })
   }
+  p: Player; 
+
+  getp(){
+      return this.firestore.collection("player").doc(this.playerid).snapshotChanges(); 
+
+  }
+    
+  
 
 }

@@ -37,7 +37,13 @@ export class SuppliesComponent implements OnInit {
   onSubmit(){
 
     let stuff = this.playerService.suppliesForm.value; 
-    let total = stuff.burritos * 5; 
+    let totBur = stuff.burritos * 5; 
+    let totJer = stuff.jerky * 5; 
+    let totNac = stuff.nachos * 5; 
+    let totSar = stuff.sardines * 5; 
+    let totShi = stuff.shirts * 5; 
+
+    let total = totBur + totJer + totNac + totSar + totShi; 
     if (total > this.cash){
       this.valid = false; 
     }
@@ -47,7 +53,7 @@ export class SuppliesComponent implements OnInit {
       this.playerService.updateCash(newTotal)
   
     .then(res=>{})
-    this.router.navigate(['/choice'])
+    this.router.navigate(['/choice'], {skipLocationChange: true})
     }
 
     

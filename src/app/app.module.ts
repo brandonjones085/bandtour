@@ -20,8 +20,22 @@ import {MatButtonModule} from '@angular/material/button';
 import { ChoiceComponent } from './choice/choice.component';
 import { ViewSuppliesComponent } from './view-supplies/view-supplies.component';
 import { FirstStopComponent } from './first-stop/first-stop.component';
-import { SessionComponent } from './session/session.component';
+
 import { HttpClientModule } from '@angular/common/http';
+import { PhoenixComponent } from './phoenix/phoenix.component';
+import { ElPasoComponent } from './el-paso/el-paso.component';
+import { HoustonComponent } from './houston/houston.component';
+import { OrleansComponent } from './orleans/orleans.component';
+import { BirmingComponent } from './birming/birming.component';
+import { AtlantaComponent } from './atlanta/atlanta.component';
+import { NashvilleComponent } from './nashville/nashville.component';
+import { ChicagoComponent } from './chicago/chicago.component';
+import { DetroitComponent } from './detroit/detroit.component';
+import { BaltiComponent } from './balti/balti.component';
+import { PhillyComponent } from './philly/philly.component';
+import { NewyorkComponent } from './newyork/newyork.component';
+import { FinalComponent } from './final/final.component';
+import { GameoverComponent } from './gameover/gameover.component';
 
 
 @NgModule({
@@ -35,7 +49,20 @@ import { HttpClientModule } from '@angular/common/http';
     ChoiceComponent,
     ViewSuppliesComponent,
     FirstStopComponent,
-    SessionComponent
+    PhoenixComponent,
+    ElPasoComponent,
+    HoustonComponent,
+    OrleansComponent,
+    BirmingComponent,
+    AtlantaComponent,
+    NashvilleComponent,
+    ChicagoComponent,
+    DetroitComponent,
+    BaltiComponent,
+    PhillyComponent,
+    NewyorkComponent,
+    FinalComponent,
+    GameoverComponent
   ],
   imports: [
     BrowserModule,

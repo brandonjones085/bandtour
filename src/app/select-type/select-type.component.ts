@@ -31,7 +31,7 @@ export class SelectTypeComponent implements OnInit {
     }else if(type.type === "gut"){
       type.cash = 100
     }
-    this.router.navigate(['/supplies']); 
+    this.router.navigate(['/supplies'], {skipLocationChange: true}); 
     this.playerService.selectType(type)
    
     .then(res=>{

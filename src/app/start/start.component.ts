@@ -56,7 +56,7 @@ export class StartComponent implements OnInit {
     })
 
     
-    this.router.navigate(['/addplayertwo'])
+    this.router.navigate(['/addplayertwo'], {skipLocationChange: true})
    
   }
 

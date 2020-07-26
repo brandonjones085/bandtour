@@ -16,11 +16,11 @@ export class ChoiceComponent implements OnInit {
   }
 
   start(){
-    this.router.navigate(['/first'])
+    this.router.navigate(['/first'], {skipLocationChange: true})
   }
 
   supplies(){
-    this.router.navigate(['/supplies'])
+    this.router.navigate(['/supplies'], {skipLocationChange: true})
   }
 
 }

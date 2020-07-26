@@ -8,6 +8,19 @@ import {SuppliesComponent} from './supplies/supplies.component'
 import { ViewSuppliesComponent } from './view-supplies/view-supplies.component';
 import {ChoiceComponent} from './choice/choice.component'; 
 import { FirstStopComponent } from './first-stop/first-stop.component';
+import { AtlantaComponent } from './atlanta/atlanta.component';
+import { BaltiComponent } from './balti/balti.component';
+import { BirmingComponent } from './birming/birming.component';
+import { DetroitComponent } from './detroit/detroit.component';
+import { ElPasoComponent } from './el-paso/el-paso.component';
+import { FinalComponent } from './final/final.component';
+import { HoustonComponent } from './houston/houston.component';
+import { NashvilleComponent } from './nashville/nashville.component';
+import { NewyorkComponent } from './newyork/newyork.component';
+import { OrleansComponent } from './orleans/orleans.component';
+import { PhillyComponent } from './philly/philly.component';
+import { PhoenixComponent } from './phoenix/phoenix.component';
+import { GameoverComponent } from './gameover/gameover.component';
 
 const routes: Routes = [
   {path: "", component: WelcomeComponent},
@@ -17,11 +30,26 @@ const routes: Routes = [
   {path: 'supplies', component: SuppliesComponent}, 
   {path: "choice", component: ChoiceComponent}, 
   {path: "viewSupplies", component: ViewSuppliesComponent}, 
-  {path: "first", component: FirstStopComponent }
+  {path: "first", component: FirstStopComponent }, 
+  {path: "atlanta", component: AtlantaComponent}, 
+  {path: "balti", component: BaltiComponent}, 
+  {path: "birming", component: BirmingComponent}, 
+  {path: "detroit", component: DetroitComponent}, 
+  {path: "el-paso", component: ElPasoComponent}, 
+  {path: "final", component: FinalComponent}, 
+  {path: "houston", component: HoustonComponent}, 
+  {path: "nashville", component: NashvilleComponent}, 
+  {path: "newyork", component: NewyorkComponent}, 
+  {path: "orleans", component: OrleansComponent}, 
+  {path: "philly", component: PhillyComponent}, 
+  {path: "phoenix", component: PhoenixComponent}, 
+  {path: "viewSupplies", component: ViewSuppliesComponent}, 
+  {path: "gameover", component: GameoverComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
