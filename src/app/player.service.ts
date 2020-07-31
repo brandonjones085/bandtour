@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'; 
 import { Player } from 'src/app/player.model'; 
 import { FormControl, FormGroup } from '@angular/forms'; 
+import { Observable } from 'rxjs'; 
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,9 @@ export class PlayerService {
   sardines: number 
   nachos: number 
   shirts: number 
+  player
+
+
 
   deletePlayer(data){
     return this.firestore.collection("player").doc(data.id).delete(); 
@@ -59,13 +64,13 @@ export class PlayerService {
 
   addPlayerThreeForm = new FormGroup({
     id: new FormControl(3),
-    name: new FormControl(" "), 
+    three: new FormControl(" "), 
     health: new FormControl(100)
   })
 
   addPlayerFourForm = new FormGroup({
     id: new FormControl(4),
-    name: new FormControl(" "), 
+    four: new FormControl(" "), 
     health: new FormControl(100)
   })
 
@@ -118,6 +123,24 @@ export class PlayerService {
     })
   }
 
+  addNewPlayerThree(three){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({three})
+      .then(res=>{
+
+      }, err=>reject(err)); 
+    })
+  }
+
+  addNewPlayerFour(four){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({four})
+      .then(res=>{
+
+      }, err=>reject(err)); 
+    })
+  }
+
   selectType(type){
     return new Promise<any>((resolve, reject)=>{
       this.firestore.doc('player/'+this.playerid).update({type})
@@ -143,7 +166,29 @@ export class PlayerService {
 
   getp(){
       return this.firestore.collection("player").doc(this.playerid).snapshotChanges(); 
+  }
 
+  async getPlay(docId:string){
+    let document = await this.firestore.collection('player').doc(docId).get().toPromise();
+    this.player = document.data()
+   
+  }
+     
+
+
+  play(){
+    this.getPlay(this.playerid)
+    let name; 
+    const num = Math.floor(Math.random() * 2)
+    console.log(num); 
+    if (this.player){
+      if(num === 0){
+        name = this.player.one.name; 
+      }else{
+        name = this.player.two.two; 
+      }
+    }
+    return name; 
   }
     
   

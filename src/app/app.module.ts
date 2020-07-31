@@ -36,6 +36,9 @@ import { PhillyComponent } from './philly/philly.component';
 import { NewyorkComponent } from './newyork/newyork.component';
 import { FinalComponent } from './final/final.component';
 import { GameoverComponent } from './gameover/gameover.component';
+import { AddPlayerThreeComponent } from './add-player-three/add-player-three.component';
+import { AddPlayerFourComponent } from './add-player-four/add-player-four.component';
+
 
 
 @NgModule({
@@ -62,7 +65,10 @@ import { GameoverComponent } from './gameover/gameover.component';
     PhillyComponent,
     NewyorkComponent,
     FinalComponent,
-    GameoverComponent
+    GameoverComponent,
+    AddPlayerThreeComponent,
+    AddPlayerFourComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -70,8 +76,8 @@ import { GameoverComponent } from './gameover/gameover.component';
     AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireDatabaseModule, 
     HttpClientModule,
-    ReactiveFormsModule, BrowserAnimationsModule, 
-
+    ReactiveFormsModule, 
+    BrowserAnimationsModule,
     MatRadioModule, 
     MatButtonModule
   

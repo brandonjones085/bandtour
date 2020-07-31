@@ -24,7 +24,7 @@ export class AddPlayerTwoComponent implements OnInit {
     .then(res=>{
 
     })
-    this.router.navigate(['/selectType'], {skipLocationChange: true})
+    this.router.navigate(['/addplayerthree'], {skipLocationChange: true})
   }
 
 }

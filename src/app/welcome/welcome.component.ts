@@ -4,6 +4,7 @@ import { IpServiceService} from 'src/app/ip-service.service'
 import { PlayerService } from 'src/app/player.service'; 
 import { Player } from 'src/app/player.model'; 
 import {AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'; 
+import {Howl} from 'howler'
 
 @Component({
   selector: 'app-welcome',
@@ -23,7 +24,11 @@ export class WelcomeComponent implements OnInit {
   i: number
   players: any; 
   newUser = true; 
+  sound = new Howl({
+    src: ["../../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true
+  })
   ngOnInit(): void {
+    this.sound.play()
     this.getIP(); 
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{

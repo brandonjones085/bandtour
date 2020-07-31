@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Howl, Howler} from 'howler'
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'band';
+  sound = new Howl({
+    src: ["../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true
+  })
+
+  ngOnInit(){
+  
+   
+  }
 }

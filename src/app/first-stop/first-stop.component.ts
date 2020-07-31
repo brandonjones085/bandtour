@@ -1,15 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router'; 
 
-import {interval} from 'rxjs'; 
+import { interval } from 'rxjs'; 
 import { PlayerService } from '../player.service';
-import { Player } from "../../app/player.model"
+
 
 
 @Component({
   selector: 'app-first-stop',
   templateUrl: './first-stop.component.html',
-  styleUrls: ['./first-stop.component.css']
+  styleUrls: ['./first-stop.component.css'], 
+
 })
 
 
@@ -28,11 +29,13 @@ export class FirstStopComponent implements OnInit {
   players; 
   i = 0;
   done=false; 
+  num; 
   constructor(private router: Router, public playerService: PlayerService) { }
 
   ngOnInit():void{
     this.playerService.updateCurrent("/first")
-
+  
+   
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{
         return{
@@ -49,13 +52,13 @@ export class FirstStopComponent implements OnInit {
         }
       }
     })
-
+   
     this.start();     
      
   }
   
   @Input() init:string; 
-  public value:string = "start"; 
+  public value:string = ""; 
 
   calculateCred(){
     if(this.players.type.type === "gut"){
@@ -66,28 +69,51 @@ export class FirstStopComponent implements OnInit {
     }else{
       this.streetCred = 20; 
     }
+  }
+
+  calculateHealth(){
 
   }
 
+
+
+
   start(){
+
+    this.value = this.playerService.play(); 
+   const sub = interval(3000).subscribe(x=>{
     
-   interval(2000).subscribe(x=>{
-   
-     this.value = "one"
      this.one(); 
+    sub.unsubscribe(); 
    })
    
   }
 
   one(){ 
-    
-    interval(2000).subscribe(x=>{
-      this.value = "two"
-      this.done=true; 
+    this.value = this.playerService.play(); 
+    const sub = interval(3000).subscribe(x=>{
+      this.value = "Shlomo took bathsalts and was left in the desert"
+      
+      this.two(); 
+      sub.unsubscribe(); 
     })
-    this.calculateCred(); 
+    
+    
    }
 
+
+   two(){
+    this.value = this.playerService.play(); 
+    
+    const sub = interval(3000).subscribe(x=>{
+      this.value = "Shlomo took bathsalts and was left in the desert"
+      this.done=true; 
+      sub.unsubscribe(); 
+    })
+    this.calculateCred(); 
+
+   }
+  
    viewSupplies(){
     this.router.navigate(['/viewSupplies'])
 
