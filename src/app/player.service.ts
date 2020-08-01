@@ -168,6 +168,7 @@ export class PlayerService {
       return this.firestore.collection("player").doc(this.playerid).snapshotChanges(); 
   }
 
+  //queries for the player using this.player id which is passed
   async getPlay(docId:string){
     let document = await this.firestore.collection('player').doc(docId).get().toPromise();
     this.player = document.data()
@@ -175,22 +176,59 @@ export class PlayerService {
   }
      
 
-
+  //The majority of the game logic is here
   play(){
+
+
+    const disasterDict = [
+    {action: " got scabes", points: 10}, 
+    {action: " got diarrhea from eating rotten food", points: 10}, 
+    {action: " took bathsalts and was left behind", points: 100}, 
+    {action: " got staph infection from a stick 'n poke", points: 20}, 
+    {action: " got boot rot from not changing socks", points: 20}
+  ]
+
     this.getPlay(this.playerid)
+    let statement=""; 
     let name; 
-    const num = Math.floor(Math.random() * 2)
+    let player; 
+    let totalHealth; 
+    const num = Math.floor(Math.random() * 4)
+    const num1 = Math.floor(Math.random() * 4)
     console.log(num); 
     if (this.player){
       if(num === 0){
         name = this.player.one.name; 
-      }else{
+        player = this.player.one
+      }else if(num === 1){
         name = this.player.two.two; 
+        player = this.player.one
+      }else if(num === 2){
+        name = this.player.three.three
+        player = this.player.one
+      }else{
+        name = this.player.four.four
+        player = this.player.one
       }
+    
+    statement = name; 
+
+
+    statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
+  }
+    if (this.checkIfGameOver(totalHealth) === "over"){
+      statement = "over"
     }
-    return name; 
+
+    return statement; 
   }
     
+
+  checkIfGameOver(total){
+    if (total <= 0){
+      return "over"; 
+    }
+  }
   
 
 }
