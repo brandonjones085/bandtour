@@ -1,1 +1,70 @@
-<p>atlanta works!</p>
+<body>
+    <div class="container" *ngIf="this.done===true">
+    <div class="container" >
+        <div class="row">
+            <div class="col-2 mt-5"><h5>Street Cred</h5><span class="badge badge-secondary">{{this.streetCred}}</span>
+                <h5>Health</h5><span class="badge badge-secondary">{{this.health}}</span>
+                <h5>Cash</h5><span class="badge badge-secondary">{{this.players.type.cash}}</span>
+            
+            </div>
+            <div class="col-1 mt-5" >
+              
+            </div>
+            <div class="col-9">
+               <img style="width: 600px; " src="../../assets/images/atl.png" alt="Welcome to East LA">
+               <p style="font-size: 10px"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" >
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 mt-5" >
+
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <div class="container" >
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 mt-5" init="test">
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <div class="container" >
+        <div class="row">
+            <div class="col-4">
+                <h4>Supplies</h4>
+                <h5>Burritos</h5><span class="badge badge-secondary">{{this.players.supplies.burritos}}</span>
+                <h5>Nachos</h5><span class="badge badge-secondary">{{this.players.supplies.nachos}}</span>
+                <h5>Jerky</h5><span class="badge badge-secondary">{{this.players.supplies.jerky}}</span>
+                <h5>Sardines</h5><span class="badge badge-secondary">{{this.players.supplies.sardines}}</span>
+                <h5>T-Shirts</h5><span class="badge badge-secondary">{{this.players.supplies.shirts}}</span>
+            </div>
+            <div class="col-6 mt-5" *ngIf="this.done===false">
+            <button  class="ml-3">Play Show</button><button  class="ml-3">Go to Next Town</button>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="this.done===false">
+    <div class="row">
+
+            <img src="../../assets/images/road.jpg" alt="road" style="width: 100%" class="mt-5">
+            <img src="../../assets/images/van.jpg" alt="van" class="van" >
+
+    </div>
+    
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 mt-5" init="test">
+           {{this.value}}
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+</body>
