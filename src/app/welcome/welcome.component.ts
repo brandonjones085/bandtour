@@ -27,6 +27,7 @@ export class WelcomeComponent implements OnInit {
   sound = new Howl({
     src: ["../../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true
   })
+
   ngOnInit(): void {
     this.sound.play()
     this.getIP(); 

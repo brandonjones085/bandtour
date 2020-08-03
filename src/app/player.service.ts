@@ -19,6 +19,8 @@ export class PlayerService {
   nachos: number 
   shirts: number 
   player
+  health: string; 
+  streetCred: number; 
 
 
 
@@ -157,6 +159,41 @@ export class PlayerService {
     })
   }
 
+
+  updateOneHealth(newHealth){
+    return new Promise<any>((resolve, reject)=>{
+  
+      this.firestore.doc('player/'+this.playerid).update({ "one.health" : newHealth})
+    })
+  }
+
+  updateTwoHealth( newHealth){
+    return new Promise<any>((resolve, reject)=>{
+
+      this.firestore.doc('player/'+this.playerid).update({ "two.health" : newHealth})
+    })
+  }
+
+  updateThreeHealth(newHealth){
+    return new Promise<any>((resolve, reject)=>{
+   
+      this.firestore.doc('player/'+this.playerid).update({ "three.health" : newHealth})
+    })
+  }
+
+  updateFourHealth( newHealth){
+    return new Promise<any>((resolve, reject)=>{
+  
+      this.firestore.doc('player/'+this.playerid).update({ "four.health": newHealth})
+    })
+  }
+
+  updateStreetCred(newCred){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({ "one.streetCred" : newCred})
+    })
+  }
+
   updateCurrent(com){
     return new Promise<any>((resolve, reject)=>{
       this.firestore.doc('player/'+this.playerid).update({"one.current" : com}); 
@@ -192,43 +229,75 @@ export class PlayerService {
     let statement=""; 
     let name; 
     let player; 
+    let playerHealth; 
     let totalHealth; 
-    const num = Math.floor(Math.random() * 4)
+    
     const num1 = Math.floor(Math.random() * 4)
-    console.log(num); 
+    
     if (this.player){
+      const num = Math.floor(Math.random() * Object.keys(this.player).length)
+
+  
+      
       if(num === 0){
         name = this.player.one.name; 
         player = this.player.one
+        playerHealth = player.health - disasterDict[num1].points; 
+        this.updateOneHealth(playerHealth); //sends updated health
+
       }else if(num === 1){
         name = this.player.two.two; 
-        player = this.player.one
+        player = this.player.two
+        playerHealth = player.health - disasterDict[num1].points; 
+        this.updateTwoHealth(playerHealth); 
+
+
       }else if(num === 2){
         name = this.player.three.three
-        player = this.player.one
+        player = this.player.three
+        playerHealth = player.health - disasterDict[num1].points; 
+        this.updateThreeHealth(playerHealth); 
+
       }else{
         name = this.player.four.four
-        player = this.player.one
+        player = this.player.four
+        playerHealth = player.health - disasterDict[num1].points; 
+        this.updateFourHealth(playerHealth);
       }
+
+    totalHealth = this.player.one.health + this.player.two.health + this.player.three.health + this.player.four.health; 
+
+    //calculates total health status
+    if(totalHealth >= 250){
+      this.health = "Good"; 
+    }else if(totalHealth > 150 && totalHealth < 250){
+      this.health = "Fair"
+    }else{
+      this.health = "Poor"
+    }
     
+    //calculates streetCred
+   
+      if(this.player.type.type === "gut"){
+       this.streetCred = this.player.one.streetCred + 25; 
+      }else if(this.player.type.type.type ==="ska"){
+        this.streetCred = this.player.one.streetCred +15; 
+      }else{
+        this.streetCred = this.player.one.streetCred + 10; 
+      }
+       console.log(this.streetCred); 
+      this.updateStreetCred(this.streetCred);
+    
+ 
     statement = name; 
 
-
     statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
-  }
-    if (this.checkIfGameOver(totalHealth) === "over"){
-      statement = "over"
     }
-
     return statement; 
-  }
+  }//end of play function
     
 
-  checkIfGameOver(total){
-    if (total <= 0){
-      return "over"; 
-    }
-  }
+
   
 
 }

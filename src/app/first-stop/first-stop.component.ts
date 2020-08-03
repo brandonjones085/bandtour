@@ -60,21 +60,6 @@ export class FirstStopComponent implements OnInit {
   @Input() init:string; 
   public value:string = ""; 
 
-  calculateCred(){
-    if(this.players.type.type === "gut"){
-      console.log("FOUND")
-     this.streetCred = 50; 
-    }else if(this.players.type.type.type==="ska"){
-      this.streetCred = 30; 
-    }else{
-      this.streetCred = 20; 
-    }
-  }
-
-  calculateHealth(){
-
-  }
-
 
 
 
@@ -110,7 +95,7 @@ export class FirstStopComponent implements OnInit {
       this.done=true; 
       sub.unsubscribe(); 
     })
-    this.calculateCred(); 
+ 
 
    }
   
