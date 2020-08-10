@@ -4,6 +4,7 @@ import { Player } from 'src/app/player.model';
 import { FormControl, FormGroup } from '@angular/forms'; 
 import { Observable } from 'rxjs'; 
 import { map } from 'rxjs/operators'
+import * as firebase from 'firebase'; 
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +22,12 @@ export class PlayerService {
   player
   health: string; 
   streetCred: number; 
+  totalHealth: number
+  gameOver= false; 
 
 
 
-  deletePlayer(data){
-    return this.firestore.collection("player").doc(data.id).delete(); 
-  }
+
 
   getPlayer(){
     return this.firestore.collection("player").snapshotChanges();
@@ -194,12 +195,45 @@ export class PlayerService {
     })
   }
 
+  updateBurritos(newB){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({ "supplies.burritos" : newB})
+    })
+  }
+
+  updateSardines(newS){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({ "supplies.sardines" : newS})
+    })
+  }
+
+  updateNachos(newN){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({ "supplies.nachos" : newN})
+    })
+  }
+
+  updateJerky(newJ){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({ "supplies.jerky" : newJ})
+    })
+  }
+
   updateCurrent(com){
     return new Promise<any>((resolve, reject)=>{
       this.firestore.doc('player/'+this.playerid).update({"one.current" : com}); 
     })
   }
-  p: Player; 
+ 
+  deletePlayer(data){
+  
+    return new Promise<any>((resolve, reject)=>{
+    this.firestore.doc('player/'+this.playerid).update({
+      [data] : firebase.firestore.FieldValue.delete()
+    })
+    
+    })
+}
 
   getp(){
       return this.firestore.collection("player").doc(this.playerid).snapshotChanges(); 
@@ -220,7 +254,7 @@ export class PlayerService {
     const disasterDict = [
     {action: " got scabes", points: 10}, 
     {action: " got diarrhea from eating rotten food", points: 10}, 
-    {action: " took bathsalts and was left behind", points: 100}, 
+    {action: " took bathsalts and was left behind", points: 50}, 
     {action: " got staph infection from a stick 'n poke", points: 20}, 
     {action: " got boot rot from not changing socks", points: 20}
   ]
@@ -231,50 +265,156 @@ export class PlayerService {
     let player; 
     let playerHealth; 
     let totalHealth; 
+    let outOfSupplies = false; 
+    let alive = true; 
     
     const num1 = Math.floor(Math.random() * 4)
     
     if (this.player){
-      const num = Math.floor(Math.random() * Object.keys(this.player).length)
+      const num = Math.floor(Math.random() * 4)
+      let oneHealth = this.player.one.health; 
+      let twoHealth = this.player.two.health; 
+      let threeHealth = this.player.three.health; 
+      let fourHealth = this.player.four.health; 
+      let burritos = this.player.supplies.burritos; 
+      let sardines = this.player.supplies.sardines; 
+      let jerky = this.player.supplies.jerky;
+      let nachos = this.player.supplies.nachos;
+      
 
-  
+      //remove supplies
+      if (burritos > 0){
+        burritos -= 1; 
+        this.updateBurritos(burritos)
+      }else if(sardines > 0){
+        sardines -= 1; 
+        this.updateSardines(sardines)
+      }else if(jerky > 0){
+        jerky -= 1; 
+        this.updateJerky(jerky)
+      }else if(nachos > 0){
+        nachos -= 1; 
+        this.updateNachos(nachos); 
+      }else{
+        outOfSupplies = true; 
+      }
+
+
       
       if(num === 0){
-        name = this.player.one.name; 
-        player = this.player.one
-        playerHealth = player.health - disasterDict[num1].points; 
-        this.updateOneHealth(playerHealth); //sends updated health
+        
+        name = this.player.one.name; //gets name
+        player = this.player.one //gets player object
+
+        var minusHealthPoints = disasterDict[num1].points; //amount of damage from object
+        console.log(minusHealthPoints) //for logging
+
+        if(outOfSupplies){  //checks supplies bool
+          minusHealthPoints += 20; 
+        }
+
+        if (oneHealth > 0){ //is player alive?
+          playerHealth = oneHealth - minusHealthPoints; 
+          this.updateOneHealth(playerHealth); //sends updated health
+
+          if(playerHealth <= 0){ //
+            this.updateOneHealth(0)
+            console.log("Player died")
+            statement = name + " has died"
+            alive = false; 
+        }
+          
+        }
+        
 
       }else if(num === 1){
         name = this.player.two.two; 
         player = this.player.two
-        playerHealth = player.health - disasterDict[num1].points; 
-        this.updateTwoHealth(playerHealth); 
 
+        var minusHealthPoints = disasterDict[num1].points; 
+        console.log(minusHealthPoints)
+        
+        if(outOfSupplies){
+          minusHealthPoints += 20; 
+        }
+        
+        if (twoHealth > 0){
+          playerHealth = twoHealth - minusHealthPoints; 
+          this.updateTwoHealth(playerHealth); 
+
+          if(playerHealth <= 0){
+            this.updateTwoHealth(0)
+            statement = name + " has died"
+            alive = false; 
+          }
+         
+        }
+        
 
       }else if(num === 2){
         name = this.player.three.three
         player = this.player.three
-        playerHealth = player.health - disasterDict[num1].points; 
-        this.updateThreeHealth(playerHealth); 
 
-      }else{
+        var minusHealthPoints = disasterDict[num1].points; 
+        console.log(minusHealthPoints)
+
+        if(outOfSupplies){
+          minusHealthPoints += 20; 
+        }
+        if(threeHealth > 0){
+          playerHealth = threeHealth - minusHealthPoints; 
+          this.updateThreeHealth(playerHealth); 
+
+          if(playerHealth <= 0){
+            this.updateThreeHealth(0)
+            statement = name + " has died"
+            alive = false; 
+          }
+       
+
+        }
+        
+      }else if (num === 3){
         name = this.player.four.four
         player = this.player.four
-        playerHealth = player.health - disasterDict[num1].points; 
-        this.updateFourHealth(playerHealth);
+
+        var minusHealthPoints = disasterDict[num1].points; 
+        console.log(minusHealthPoints)
+
+        if(outOfSupplies){
+          minusHealthPoints += 20; 
+        }
+        if(fourHealth > 0){
+          playerHealth = fourHealth - minusHealthPoints; 
+          this.updateFourHealth(playerHealth);
+
+          if(playerHealth <= 0){
+            this.updateFourHealth(0)
+            statement = name + " has died"
+            alive = false; 
+          }
+       
+        }
+        
       }
 
-    totalHealth = this.player.one.health + this.player.two.health + this.player.three.health + this.player.four.health; 
+    totalHealth = oneHealth + twoHealth + threeHealth + fourHealth; 
+   
+
 
     //calculates total health status
     if(totalHealth >= 250){
       this.health = "Good"; 
     }else if(totalHealth > 150 && totalHealth < 250){
       this.health = "Fair"
-    }else{
+    }else if (totalHealth > 0 && totalHealth < 150){
       this.health = "Poor"
+    }else if(totalHealth < 1){
+      this.gameOver = true; 
     }
+
+
+  
     
     //calculates streetCred
    
@@ -285,13 +425,15 @@ export class PlayerService {
       }else{
         this.streetCred = this.player.one.streetCred + 10; 
       }
-       console.log(this.streetCred); 
+      
       this.updateStreetCred(this.streetCred);
     
- 
-    statement = name; 
+      if (alive === true){
+        statement = name; 
 
-    statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
+        statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
+      }
+    
     }
     return statement; 
   }//end of play function

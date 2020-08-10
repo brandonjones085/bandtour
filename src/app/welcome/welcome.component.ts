@@ -44,14 +44,14 @@ export class WelcomeComponent implements OnInit {
       for (this.i = 0; this.i < this.players.length; this.i++){
         if((this.players[this.i].one.ip) === this.ipAddress){
           this.newUser = false; //resume button triggered
-          this.playerService.playerid = this.players[this.i].id; 
+          this.playerService.playerid = this.players[this.i].id;   
           this.current = this.players[this.i].one.current; 
-         
+        
         }
       }
-  
+     
     })
-
+    console.log("YO")
   }
 
 
@@ -67,7 +67,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   start(){
-    this.firestore.doc('player/'+this.userId).delete(); 
+    
     this.loadStart = true; 
     this.router.navigate(['/start'], {skipLocationChange: true})
   }

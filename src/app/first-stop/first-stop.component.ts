@@ -68,7 +68,12 @@ export class FirstStopComponent implements OnInit {
     this.value = this.playerService.play(); 
    const sub = interval(3000).subscribe(x=>{
     
-     this.one(); 
+    this.one(); 
+
+    if(this.playerService.gameOver === true){
+      this.router.navigate(['/gameover'], {skipLocationChange: true})
+    }
+
     sub.unsubscribe(); 
    })
    
@@ -77,9 +82,13 @@ export class FirstStopComponent implements OnInit {
   one(){ 
     this.value = this.playerService.play(); 
     const sub = interval(3000).subscribe(x=>{
+    
       this.value = "Shlomo took bathsalts and was left in the desert"
       
       this.two(); 
+      if(this.playerService.gameOver === true){
+        this.router.navigate(['/gameover'], {skipLocationChange: true})
+      }
       sub.unsubscribe(); 
     })
     
@@ -92,6 +101,9 @@ export class FirstStopComponent implements OnInit {
     
     const sub = interval(3000).subscribe(x=>{
       this.value = "Shlomo took bathsalts and was left in the desert"
+      if(this.playerService.gameOver === true){
+        this.router.navigate(['/gameover'], {skipLocationChange: true})
+      }
       this.done=true; 
       sub.unsubscribe(); 
     })
@@ -105,12 +117,12 @@ export class FirstStopComponent implements OnInit {
    }
 
    playShow(){
-    this.router.navigate(['/choice'])
+    this.router.navigate(['/choice'], {skipLocationChange: true})
 
    }
 
-   next(){
-    this.router.navigate(['/phoenix'])
+   goToNext(){
+    this.router.navigate(['/phoenix'], {skipLocationChange: true})
    }
 
 

@@ -2,8 +2,8 @@
     <div class="container" *ngIf="this.done===true">
     <div class="container" >
         <div class="row">
-            <div class="col-2 mt-5"><h5>Street Cred</h5><span class="badge badge-secondary">{{this.streetCred}}</span>
-                <h5>Health</h5><span class="badge badge-secondary">{{this.health}}</span>
+            <div class="col-2 mt-5"><h5>Street Cred</h5><span class="badge badge-secondary">{{this.playerService.streetCred}}</span>
+                <h5>Health</h5><span class="badge badge-secondary">{{this.playerService.health}}</span>
                 <h5>Cash</h5><span class="badge badge-secondary">{{this.players.type.cash}}</span>
             
             </div>
@@ -43,8 +43,8 @@
                 <h5>Sardines</h5><span class="badge badge-secondary">{{this.players.supplies.sardines}}</span>
                 <h5>T-Shirts</h5><span class="badge badge-secondary">{{this.players.supplies.shirts}}</span>
             </div>
-            <div class="col-6 mt-5" *ngIf="this.done===false">
-            <button  class="ml-3">Play Show</button><button  class="ml-3">Go to Next Town</button>
+            <div class="col-6 mt-5" *ngIf="this.done===true">
+            <button  class="ml-3">Play Show</button><button (click)="goToNext()" class="ml-3">Go to Next Town</button>
             </div>
             <div class="col-2"></div>
         </div>

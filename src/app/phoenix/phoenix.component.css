@@ -1,0 +1,39 @@
+@import '~bootstrap/dist/css/bootstrap.min.css'; 
+
+@font-face{
+    font-family: arcade; 
+    src:url(../../assets/fonts/ARCADE_N.TTF) format("opentype"); 
+}
+
+
+*, h2, h3, h4, h5{
+    font-family: 'arcade';
+
+}
+
+body{
+    background-color: darkgrey;
+}
+
+img{
+    width: 150%; 
+}
+
+@keyframes myanimation{
+    from{
+        transform: translate(0,0); 
+    }
+    to{
+        transform: translate(1920px, 0); 
+    }
+}
+
+img.van{
+    width: 100px; 
+    position: absolute;
+    z-index: 10; 
+    top: 50%; 
+    left: -200px; 
+    animation-duration: 24s; 
+    animation-name: myanimation; 
+}

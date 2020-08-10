@@ -3,21 +3,10 @@
     <div class="row">
       <div class="col-sm"></div>
       <div class="col-sm">
-        <table>
-          <thead>
-            <th>Name the second player</th>
-      
-          </thead>
-          <tbody>
-            <tr *ngFor="let p of players">
-              <td>{{p.name}}</td>
-              <td> 
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <form [formGroup]="this.playerService.addPlayerTwoForm" >
-            <label for="name">Name: </label>
+
+     
+        <form class="mt-5" [formGroup]="this.playerService.addPlayerTwoForm" >
+            <label for="name">Name of second player: </label>
             <input type="text" formControlName="two">
             <button (click)="onSubmit()">Submit
               
@@ -28,4 +17,6 @@
     </div>
   </div>
 </body>
+
+
 

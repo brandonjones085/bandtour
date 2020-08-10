@@ -3,21 +3,9 @@
       <div class="row">
         <div class="col-sm"></div>
         <div class="col-sm">
-          <table>
-            <thead>
-              <th>Name the third player</th>
-        
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td> 
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <form [formGroup]="this.playerService.addPlayerThreeForm" >
-              <label for="name">Name: </label>
+
+          <form  class="mt-5"  [formGroup]="this.playerService.addPlayerThreeForm" >
+              <label for="name">Name third player: </label>
               <input type="text" formControlName="three">
               <button (click)="onSubmit()">Submit
                 

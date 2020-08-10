@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: "balti", component: BaltiComponent}, 
   {path: "birming", component: BirmingComponent}, 
   {path: "detroit", component: DetroitComponent}, 
-  {path: "el-paso", component: ElPasoComponent}, 
+  {path: "elpaso", component: ElPasoComponent}, 
   {path: "final", component: FinalComponent}, 
   {path: "houston", component: HoustonComponent}, 
   {path: "nashville", component: NashvilleComponent}, 
