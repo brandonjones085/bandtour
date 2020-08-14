@@ -45,10 +45,14 @@
                 <h5>T-Shirts</h5><span class="badge badge-secondary">{{this.players.supplies.shirts}}</span>
             </div>
             <div class="col-6 mt-5" *ngIf="this.done===true">
-            <button  class="ml-3">Play Show</button><button (click)="goToNext()" class="ml-3">Go to Next Town</button>
-            </div>
+            <button (click)="playShow()" class="ml-3">Play Show</button><button (click)="goToNext()" class="ml-3">Go to Next Town</button>
+           <br>
+           <br>
+            {{this.valueOne}}    
+        </div>
             <div class="col-2"></div>
         </div>
+
     </div>
 </div>
 <div class="container" *ngIf="this.done===false">
@@ -64,6 +68,7 @@
         <div class="col-4"></div>
         <div class="col-4 mt-5" init="test">
            {{this.value}}
+          
         </div>
         <div class="col-4"></div>
     </div>

@@ -59,6 +59,7 @@ export class FirstStopComponent implements OnInit {
   
   @Input() init:string; 
   public value:string = ""; 
+  public valueOne: string =""; 
 
 
 
@@ -101,6 +102,7 @@ export class FirstStopComponent implements OnInit {
     
     const sub = interval(3000).subscribe(x=>{
       this.value = "Shlomo took bathsalts and was left in the desert"
+
       if(this.playerService.gameOver === true){
         this.router.navigate(['/gameover'], {skipLocationChange: true})
       }
@@ -111,15 +113,21 @@ export class FirstStopComponent implements OnInit {
 
    }
   
-   viewSupplies(){
-    this.router.navigate(['/viewSupplies'])
-
-   }
-
    playShow(){
-    this.router.navigate(['/choice'], {skipLocationChange: true})
+    
+   this.valueOne = this.playerService.playShow(); 
 
+    const sub = interval(4000).subscribe(x=>{
+      if(this.playerService.gameOver === true){
+        this.router.navigate(['/gameover'], {skipLocationChange: true})
+      }
+      this.goToNext(); 
+      sub.unsubscribe(); 
+    })
+    
+    
    }
+
 
    goToNext(){
     this.router.navigate(['/phoenix'], {skipLocationChange: true})

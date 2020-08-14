@@ -219,6 +219,12 @@ export class PlayerService {
     })
   }
 
+  updateShirt(newS){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.doc('player/'+this.playerid).update({ "supplies.shirts" : newS})
+    })
+  }
+
   updateCurrent(com){
     return new Promise<any>((resolve, reject)=>{
       this.firestore.doc('player/'+this.playerid).update({"one.current" : com}); 
@@ -319,7 +325,7 @@ export class PlayerService {
 
           if(playerHealth <= 0){ //
             this.updateOneHealth(0)
-            console.log("Player died")
+        
             statement = name + " has died"
             alive = false; 
         }
@@ -411,6 +417,7 @@ export class PlayerService {
       this.health = "Poor"
     }else if(totalHealth < 1){
       this.gameOver = true; 
+      this.firestore.collection("player").doc(this.playerid).delete(); 
     }
 
 
@@ -438,6 +445,66 @@ export class PlayerService {
     return statement; 
   }//end of play function
     
+
+
+
+  //The majority of the game logic is here
+  playShow(){
+
+
+    const disasterDict = [
+    {action: " got scabes", points: 10}, 
+    {action: " got diarrhea from eating rotten food", points: 10}, 
+    {action: " took bathsalts and was left behind", points: 50}, 
+    {action: " got staph infection from a stick 'n poke", points: 20}, 
+    {action: " got boot rot from not changing socks", points: 20}
+  ]
+
+    this.getPlay(this.playerid)
+    let statement=""; 
+    
+    
+    const num1 = Math.floor(Math.random() * 2)
+    const num2 = Math.floor(Math.random() * 20); 
+    const num3 = Math.floor(Math.random() * 50); 
+    
+
+  
+    
+    if (this.player){
+
+      let player = this.player
+      let shirt = this.player.supplies.shirts; 
+      let cash = this.player.type.cash; 
+  
+
+      if (num1 === 1){
+        if (shirt > 0){
+          shirt -= 1;
+          this.updateShirt(shirt);
+          cash += num2;  
+          this.updateCurrent(cash); 
+          statement = "You sold one of your shirts for $" + num2; 
+        }
+      }else if(num1 === 2){
+        if (cash > 0){
+          statement = "While you were playing the show, somebody robboed your van for $" + num3; 
+          cash -= num3; 
+          if (cash < 0){
+            cash = 0; 
+            this.updateCash(cash); 
+          }else{
+            statement + "You played and show and 2 people showed up. One said you sucked and left early"
+          }
+          
+        }
+      }
+      
+    
+    }
+    return statement; 
+
+  }//end of playShow function
 
 
   
