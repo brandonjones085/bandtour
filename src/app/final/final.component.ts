@@ -24,16 +24,9 @@ export class FinalComponent implements OnInit {
   streetCred;  
   fin = false; 
   health="Good"; 
-  cash 
-  burritos = 0; 
-  jerky = 0; 
-  sardines = 0; 
-  shirts = 0; 
-  nachos = 0; 
+  totalPoints; 
   players; 
-  i = 0;
-  done=false; 
-  num; 
+  i; 
 
   ngOnInit(): void {
     this.playerService.updateCurrent("/first")
@@ -53,6 +46,11 @@ export class FinalComponent implements OnInit {
         }
       }
     })
+  }
+
+  playAgain(){
+    this.playerService.deleteDoc(); 
+    this.router.navigateByUrl('/welcome', {skipLocationChange: true}); 
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Howl, Howler} from 'howler'
-
+import {LocationStrategy} from '@angular/common'; 
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,10 @@ export class AppComponent {
   sound = new Howl({
     src: ["../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true
   })
+
+  constructor(private location: LocationStrategy){
+
+  }
 
   ngOnInit(){
   

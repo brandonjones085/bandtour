@@ -32,11 +32,11 @@ export class WelcomeComponent implements OnInit {
   players: any; 
   newUser = true; 
   sound = new Howl({
-    src: ["../../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true
+    src: ["../../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true, loop: true
   })
 
   ngOnInit(): void {
-    // this.sound.play()
+    this.sound.play()
     this.getIP(); 
 
     this.playerService.getPlayer().subscribe(data=>{

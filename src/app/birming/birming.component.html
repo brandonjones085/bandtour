@@ -43,8 +43,8 @@
                 <h5>Sardines</h5><span class="badge badge-secondary">{{this.players.supplies.sardines}}</span>
                 <h5>T-Shirts</h5><span class="badge badge-secondary">{{this.players.supplies.shirts}}</span>
             </div>
-            <div class="col-6 mt-5" *ngIf="this.done===false">
-            <button (click)="playShow()" class="ml-3">Play Show</button><button  class="ml-3">Go to Next Town</button>
+            <div class="col-6 mt-5" *ngIf="this.done===true">
+            <button (click)="playShow()" class="ml-3">Play Show</button><button (click)="goToNext()" class="ml-3">Go to Next Town</button>
             
             <br>
             <br>

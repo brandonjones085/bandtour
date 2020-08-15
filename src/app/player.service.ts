@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import * as firebase from 'firebase'; 
 import { LocationStrategy } from '@angular/common';
+import {Howl} from 'howler'
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,22 @@ export class PlayerService {
   totalHealth: number
   gameOver= false; 
 
+  excel = new Howl({
+    src: ["../../assets/audio/excel.mp3"], html5: true
+  })
+
+  nodice = new Howl({
+    src: ["../../assets/audio/nodice.mp3"], html5: true
+  })
+
+  noway = new Howl({
+    src: ["../../assets/audio/noway.mp3"], html5: true
+  })
+
+  wha = new Howl({
+    src: ["../../assets/audio/wha.mp3"], html5: true
+  })
+
 // Define a function to handle back button and use anywhere
 preventBackButton() {
   history.pushState(null, null, location.href);
@@ -37,8 +54,6 @@ preventBackButton() {
   getPlayer(){
     return this.firestore.collection("player").snapshotChanges();
   }
-
-
 
   createPlayer(one){
     return new Promise<any>((resolve, reject)=>{
@@ -218,6 +233,12 @@ preventBackButton() {
     })
   }
 
+  deleteDoc(){
+    return new Promise<any>((resolve, reject)=>{
+      this.firestore.collection("player").doc(this.playerid).delete();
+    })
+  }
+
   updateJerky(newJ){
     return new Promise<any>((resolve, reject)=>{
       this.firestore.doc('player/'+this.playerid).update({ "supplies.jerky" : newJ})
@@ -280,6 +301,7 @@ preventBackButton() {
     let alive = true; 
     
     const num1 = Math.floor(Math.random() * 4)
+    const num2 = Math.floor(Math.random() * 2)
     
     if (this.player){
       const num = Math.floor(Math.random() * 4)
@@ -421,13 +443,15 @@ preventBackButton() {
     }else if (totalHealth > 0 && totalHealth < 150){
       this.health = "Poor"
     }else if(totalHealth < 1){
+      if(num2 === 1){//audio for game over
+        this.wha.play()
+      }else{
+        this.nodice.play()
+      }
       this.gameOver = true; 
       this.firestore.collection("player").doc(this.playerid).delete(); 
     }
 
-
-  
-    
     //calculates streetCred
    
       if(this.player.type.type === "gut"){
@@ -472,9 +496,7 @@ preventBackButton() {
     const num1 = Math.floor(Math.random() * 2)
     const num2 = Math.floor(Math.random() * 20); 
     const num3 = Math.floor(Math.random() * 50); 
-    
-
-  
+    const num4 = Math.floor(Math.random() * 2); 
     
     if (this.player){
 
@@ -489,6 +511,11 @@ preventBackButton() {
           this.updateShirt(shirt);
           cash += num2;  
           this.updateCurrent(cash); 
+          if(num4 ===1){ //audio for good stuff
+            this.noway.play()
+          }else{
+            this.excel.play()
+          }
           statement = "You sold one of your shirts for $" + num2; 
         }
       }else if(num1 === 2){

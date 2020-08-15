@@ -1,7 +1,10 @@
 
 <body>
     <div class="container">
-<label id="example-radio-group-label">Select Your Band Type</label>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+<label class="mt-5" id="example-radio-group-label">Select Your Band Type</label>
 <form [formGroup]="this.playerService.selectTypeForm">
 <mat-radio-group formControlName="type"  aria-label="Select an option">
     <br>
@@ -23,6 +26,10 @@
     
   </section>
 </form>
-
+<br>
+<img src="../../assets/images/b2.png" alt="Cool band">
+</div>
+<div class="col-2"></div>
+</div>
 </div>
 </body>

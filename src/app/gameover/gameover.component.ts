@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
 import {Router } from '@angular/router'; 
+import {PlayerService} from 'src/app/player.service'
 
 @Component({
   selector: 'app-gameover',
@@ -9,7 +10,7 @@ import {Router } from '@angular/router';
 })
 export class GameoverComponent implements OnInit {
 
-  constructor(private location: PlatformLocation, private router: Router) { 
+  constructor(public playerService: PlayerService,private location: PlatformLocation, private router: Router) { 
     // preventing back button in browser implemented by "Samba Siva"  
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
@@ -18,6 +19,11 @@ export class GameoverComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  playAgain(){
+    this.playerService.deleteDoc(); 
+    this.router.navigateByUrl('/welcome', {skipLocationChange: true}); 
   }
 
 }
