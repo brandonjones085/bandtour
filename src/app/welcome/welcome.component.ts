@@ -29,7 +29,7 @@ export class WelcomeComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    // this.sound.play()
+    this.sound.play()
     this.getIP(); 
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{

@@ -27,7 +27,7 @@ import { ElPasoComponent } from './el-paso/el-paso.component';
 import { HoustonComponent } from './houston/houston.component';
 import { OrleansComponent } from './orleans/orleans.component';
 import { BirmingComponent } from './birming/birming.component';
-import { AtlantaComponent } from './atlanta/atlanta.component';
+
 import { NashvilleComponent } from './nashville/nashville.component';
 import { ChicagoComponent } from './chicago/chicago.component';
 import { DetroitComponent } from './detroit/detroit.component';
@@ -57,7 +57,7 @@ import { AddPlayerFourComponent } from './add-player-four/add-player-four.compon
     HoustonComponent,
     OrleansComponent,
     BirmingComponent,
-    AtlantaComponent,
+
     NashvilleComponent,
     ChicagoComponent,
     DetroitComponent,

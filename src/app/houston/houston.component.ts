@@ -100,11 +100,20 @@ export class HoustonComponent implements OnInit {
 
    }
   
-
+   public valueOne: string =""; 
    playShow(){
-    this.router.navigate(['/choice'])
-
-   }
+    
+    this.valueOne = this.playerService.playShow(); 
+ 
+     const sub = interval(4000).subscribe(x=>{
+       if(this.playerService.gameOver === true){
+         this.router.navigate(['/gameover'], {skipLocationChange: true})
+       }
+       this.goToNext(); 
+       sub.unsubscribe(); 
+     })
+     
+    }
 
    goToNext(){
     this.router.navigate(['/orleans'], {skipLocationChange: true})

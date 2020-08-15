@@ -110,13 +110,23 @@ export class OrleansComponent implements OnInit {
    }
 
 
+   public valueOne: string =""; 
    playShow(){
-    this.router.navigate(['/choice'])
+    
+    this.valueOne = this.playerService.playShow(); 
+ 
+     const sub = interval(4000).subscribe(x=>{
+       if(this.playerService.gameOver === true){
+         this.router.navigate(['/gameover'], {skipLocationChange: true})
+       }
+       this.goToNext(); 
+       sub.unsubscribe(); 
+     })
+     
+    }
 
-   }
-
-   next(){
-    this.router.navigate(['/birming'])
+   goToNext(){
+    this.router.navigate(['/birming'], {skipLocationChange: true})
    }
 
 }

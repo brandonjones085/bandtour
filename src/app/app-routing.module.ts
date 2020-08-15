@@ -8,7 +8,7 @@ import {SuppliesComponent} from './supplies/supplies.component'
 import { ViewSuppliesComponent } from './view-supplies/view-supplies.component';
 import {ChoiceComponent} from './choice/choice.component'; 
 import { FirstStopComponent } from './first-stop/first-stop.component';
-import { AtlantaComponent } from './atlanta/atlanta.component';
+
 import { BaltiComponent } from './balti/balti.component';
 import { BirmingComponent } from './birming/birming.component';
 import { DetroitComponent } from './detroit/detroit.component';
@@ -33,7 +33,7 @@ const routes: Routes = [
   {path: "choice", component: ChoiceComponent}, 
   {path: "viewSupplies", component: ViewSuppliesComponent}, 
   {path: "first", component: FirstStopComponent }, 
-  {path: "atlanta", component: AtlantaComponent}, 
+  
   {path: "balti", component: BaltiComponent}, 
   {path: "birming", component: BirmingComponent}, 
   {path: "detroit", component: DetroitComponent}, 

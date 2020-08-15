@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'; 
 import { Player } from 'src/app/player.model'; 
-import { FormControl, FormGroup } from '@angular/forms'; 
+import { FormControl, FormGroup, Validators } from '@angular/forms'; 
 import { Observable } from 'rxjs'; 
 import { map } from 'rxjs/operators'
 import * as firebase from 'firebase'; 
@@ -26,9 +26,6 @@ export class PlayerService {
   gameOver= false; 
 
 
-
-
-
   getPlayer(){
     return this.firestore.collection("player").snapshotChanges();
   }
@@ -51,7 +48,7 @@ export class PlayerService {
   form = new FormGroup({
     ip: new FormControl(""), 
     id: new FormControl(1), 
-    name: new FormControl(" "), 
+    name: new FormControl(" ", [Validators.required]), 
     health: new FormControl(100), 
     streetCred: new FormControl(0),
     current: new FormControl("")
@@ -61,19 +58,19 @@ export class PlayerService {
 
   addPlayerTwoForm = new FormGroup({
     id: new FormControl(2),
-    two: new FormControl(" "), 
+    two: new FormControl(" ", [Validators.required]), 
     health: new FormControl(100)
   })
 
   addPlayerThreeForm = new FormGroup({
     id: new FormControl(3),
-    three: new FormControl(" "), 
+    three: new FormControl(" ", [Validators.required]),  
     health: new FormControl(100)
   })
 
   addPlayerFourForm = new FormGroup({
     id: new FormControl(4),
-    four: new FormControl(" "), 
+    four: new FormControl(" ", [Validators.required]), 
     health: new FormControl(100)
   })
 
@@ -84,7 +81,7 @@ export class PlayerService {
   })
 
   selectTypeForm = new FormGroup({
-    type: new FormControl(" "), 
+    type: new FormControl(" ", [Validators.required]), 
     cash: new FormControl()
   })
 

@@ -82,7 +82,6 @@ export class PhoenixComponent implements OnInit {
       sub.unsubscribe(); 
     })
     
-    
    }
 
 
@@ -98,15 +97,23 @@ export class PhoenixComponent implements OnInit {
       sub.unsubscribe(); 
     })
   
-
    }
   
-
+   public valueOne: string =""; 
 
    playShow(){
-    this.router.navigate(['/choice'], {skipLocationChange: true})
-
-   }
+    
+    this.valueOne = this.playerService.playShow(); 
+ 
+     const sub = interval(4000).subscribe(x=>{
+       if(this.playerService.gameOver === true){
+         this.router.navigate(['/gameover'], {skipLocationChange: true})
+       }
+       this.goToNext(); 
+       sub.unsubscribe(); 
+     })
+     
+    }
 
    goToNext(){
     this.router.navigate(['/elpaso'], {skipLocationChange: true})
