@@ -24,6 +24,7 @@
     "@angular/router": "~10.0.3",
     "@ryancavanaugh/howlerjs": "^1.1.10-alpha",
     "@types/howler": "^2.2.1",
+    "angular-disable-browser-back-button": "^1.0.2",
     "bootstrap": "^4.5.0",
     "chokidar": "^3.4.2",
     "firebase": "^7.16.0",

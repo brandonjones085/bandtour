@@ -5,6 +5,7 @@ import { PlayerService } from 'src/app/player.service';
 import { Player } from 'src/app/player.model'; 
 import {AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'; 
 import {Howl} from 'howler'
+import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-welcome',
@@ -15,7 +16,13 @@ import {Howl} from 'howler'
 
 export class WelcomeComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore, private ip: IpServiceService, private router: Router, private playerService: PlayerService) { }
+  constructor(private firestore: AngularFirestore, private ip: IpServiceService, private router: Router, private playerService: PlayerService, private location: LocationStrategy) { 
+   // preventing back button in browser implemented by "Samba Siva"  
+ history.pushState(null, null, window.location.href);  
+ this.location.onPopState(() => {
+   history.pushState(null, null, window.location.href);
+ });  
+  }
   
   loadStart = false; 
   userId: string; 
@@ -29,8 +36,9 @@ export class WelcomeComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.sound.play()
+    // this.sound.play()
     this.getIP(); 
+
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{
         return{

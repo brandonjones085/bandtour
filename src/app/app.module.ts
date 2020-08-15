@@ -39,6 +39,7 @@ import { GameoverComponent } from './gameover/gameover.component';
 import { AddPlayerThreeComponent } from './add-player-three/add-player-three.component';
 import { AddPlayerFourComponent } from './add-player-four/add-player-four.component';
 
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AddPlayerFourComponent } from './add-player-four/add-player-four.compon
     ReactiveFormsModule, 
     BrowserAnimationsModule,
     MatRadioModule, 
-    MatButtonModule
+    MatButtonModule, 
+    BackButtonDisableModule.forRoot()
   
   ],
   providers: [],

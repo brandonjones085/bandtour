@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { Player } from 'src/app/player.model'; 
 import {Router} from '@angular/router'; 
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-select-type',
@@ -10,7 +11,13 @@ import {Router} from '@angular/router';
 })
 export class SelectTypeComponent implements OnInit {
 
-  constructor(public playerService: PlayerService, private router: Router) { }
+  constructor(private location: PlatformLocation, public playerService: PlayerService, private router: Router) { 
+    // preventing back button in browser implemented by "Samba Siva"  
+    location.onPopState(()=>{
+      console.log("PRESSED BACK"); 
+      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+    })
+  }
 
 
 

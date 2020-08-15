@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { interval } from 'rxjs'; 
 import { PlayerService } from '../player.service';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-balti',
@@ -25,11 +26,17 @@ export class BaltiComponent implements OnInit {
   i = 0;
   done=false; 
   num; 
-  constructor(private router: Router, public playerService: PlayerService) { }
+  constructor( private location: PlatformLocation, private router: Router, public playerService: PlayerService) {
+    // preventing back button in browser implemented by "Samba Siva"  
+    location.onPopState(()=>{
+      console.log("PRESSED BACK"); 
+      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+    })
+   }
 
   ngOnInit():void{
+    this.playerService.preventBackButton(); 
     this.playerService.updateCurrent("/balti")
-  
    
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{

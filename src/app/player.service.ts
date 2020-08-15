@@ -5,13 +5,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs'; 
 import { map } from 'rxjs/operators'
 import * as firebase from 'firebase'; 
+import { LocationStrategy } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private locationStrategy: LocationStrategy) { }
   playerid: string 
   playerCash: number
   burritos: number
@@ -25,6 +26,13 @@ export class PlayerService {
   totalHealth: number
   gameOver= false; 
 
+// Define a function to handle back button and use anywhere
+preventBackButton() {
+  history.pushState(null, null, location.href);
+  this.locationStrategy.onPopState(() => {
+    history.pushState(null, null, location.href);
+  })
+}
 
   getPlayer(){
     return this.firestore.collection("player").snapshotChanges();

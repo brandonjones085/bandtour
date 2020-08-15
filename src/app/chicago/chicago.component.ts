@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { interval } from 'rxjs'; 
 import { PlayerService } from '../player.service';
-
+import { PlatformLocation } from '@angular/common';
 @Component({
   selector: 'app-chicago',
   templateUrl: './chicago.component.html',
@@ -25,7 +25,13 @@ export class ChicagoComponent implements OnInit {
   i = 0;
   done=false; 
   num; 
-  constructor(private router: Router, public playerService: PlayerService) { }
+  constructor(private location: PlatformLocation, private router: Router, public playerService: PlayerService) { 
+    // preventing back button in browser implemented by "Samba Siva"  
+    location.onPopState(()=>{
+      console.log("PRESSED BACK"); 
+      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+    })
+  }
 
   ngOnInit():void{
     this.playerService.updateCurrent("/chicago")
@@ -125,7 +131,7 @@ export class ChicagoComponent implements OnInit {
      })
        
     }
-    
+
 
    goToNext(){
     this.router.navigate(['/detroit'], {skipLocationChange: true})

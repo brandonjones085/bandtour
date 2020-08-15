@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PlayerService} from 'src/app/player.service'
 import { Player } from 'src/app/player.model'; 
 import {Router} from '@angular/router'; 
-
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-add-player-three',
@@ -11,9 +11,15 @@ import {Router} from '@angular/router';
 })
 export class AddPlayerThreeComponent implements OnInit {
 
-  constructor(private router: Router, public playerService: PlayerService) { }
+  constructor(private location: PlatformLocation, private router: Router, public playerService: PlayerService) {
+    location.onPopState(()=>{
+      
+      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+    })
+   }
 
   ngOnInit(): void {
+   
     this.playerService.updateCurrent("/addplayerthree")
   }
 

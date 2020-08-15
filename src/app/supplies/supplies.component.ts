@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { PlayerService } from 'src/app/player.service'
 import {Player} from 'src/app/player.model'; 
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-supplies',
@@ -11,12 +12,18 @@ import {Player} from 'src/app/player.model';
 export class SuppliesComponent implements OnInit {
 
  
-  constructor(private router: Router, public playerService: PlayerService) { }
+  constructor(private location: PlatformLocation, private router: Router, public playerService: PlayerService) {
+    // preventing back button in browser implemented by "Samba Siva"  
+    location.onPopState(()=>{
+      console.log("PRESSED BACK"); 
+      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+    })
+   }
   players: any; 
   cash: number; 
   valid = true; 
   ngOnInit(): void {
-  
+    
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{
         return{

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { PlayerService } from 'src/app/player.service'; 
 import { Player } from 'src/app/player.model'; 
 import { Router } from '@angular/router'; 
 import { IpServiceService} from 'src/app/ip-service.service'
+import { PlatformLocation } from '@angular/common';
 
 
 
@@ -19,11 +20,16 @@ export class StartComponent implements OnInit {
   ipAddress: string; 
   newUser: true; 
   current: "/start"; 
-  constructor(public playerService: PlayerService, private router: Router, private ip: IpServiceService) { }
+  constructor(public playerService: PlayerService, private router: Router, private ip: IpServiceService, private location: PlatformLocation) { 
+    location.onPopState(()=>{
+      console.log("PRESSED BACK"); 
+      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+    })
+  }
 
   ngOnInit(): void{
     this.getIP(); 
-    
+ 
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{
         return{

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { interval } from 'rxjs'; 
 import { PlayerService } from '../player.service';
+import {PlatformLocation} from '@angular/common'; 
 
 @Component({
   selector: 'app-detroit',
@@ -25,7 +26,14 @@ export class DetroitComponent implements OnInit {
   i = 0;
   done=false; 
   num; 
-  constructor(private router: Router, public playerService: PlayerService) { }
+  
+  constructor(private router: Router, public playerService: PlayerService, private location: PlatformLocation) {
+    // preventing back button in browser implemented by "Samba Siva"  
+    location.onPopState(()=>{
+      console.log("PRESSED BACK"); 
+      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+    })
+   }
 
   ngOnInit():void{
     this.playerService.updateCurrent("/detroit")
