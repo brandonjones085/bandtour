@@ -10,9 +10,10 @@
           <button (click)="onSubmit()">Submit
             
           </button>
-     
-
       </form>
+      <div *ngIf="this.error ===true">
+      <h2>You gotta name your bandmate brah</h2>
+    </div>
       </div>
       <div class="col-sm"></div>
     </div>

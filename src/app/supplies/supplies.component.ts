@@ -19,6 +19,7 @@ export class SuppliesComponent implements OnInit {
       this.router.navigateByUrl("/welcome", {skipLocationChange: true})
     })
    }
+   
   players: any; 
   cash: number; 
   valid = true; 
@@ -63,9 +64,6 @@ export class SuppliesComponent implements OnInit {
     this.router.navigate(['/choice'], {skipLocationChange: true})
     }
 
-    
-
-    
 
   }
 

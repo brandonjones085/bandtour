@@ -22,9 +22,13 @@ export class AddPlayerThreeComponent implements OnInit {
    
     this.playerService.updateCurrent("/addplayerthree")
   }
-
+  error = false; 
   onSubmit(){
+    this.error = false;
     let data = this.playerService.addPlayerThreeForm.value; 
+    if (data.three === "" || data.three === " " || data.three === "  " || data.three === "    "){
+      this.error = true; 
+  }else{
     this.playerService.addNewPlayerThree(data)
     
     .then(res=>{
@@ -32,5 +36,5 @@ export class AddPlayerThreeComponent implements OnInit {
     })
     this.router.navigate(['/addplayerfour'], {skipLocationChange: true})
   }
-
+  }
 }

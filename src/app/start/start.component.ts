@@ -4,6 +4,7 @@ import { Player } from 'src/app/player.model';
 import { Router } from '@angular/router'; 
 import { IpServiceService} from 'src/app/ip-service.service'
 import { PlatformLocation } from '@angular/common';
+import { Validators } from '@angular/forms';
 
 
 
@@ -49,11 +50,15 @@ export class StartComponent implements OnInit {
   }
 
   delete = data =>{this.playerService.deletePlayer(data)}
-
+  error = false;  
   onSubmit(){
    
     let one = this.playerService.form.value; 
-    one.ip = this.ipAddress;  
+    console.log("name " + one.name); 
+    if (one.name === "" || one.name === " " || one.name === "  " || one.name === "    "){
+        this.error = true; 
+    }else{
+      one.ip = this.ipAddress;  
     one.current = "/start"; //used to track users state
     this.playerService.createPlayer(one)
     .then(res=>{
@@ -61,9 +66,11 @@ export class StartComponent implements OnInit {
       
     })
 
-    
     this.router.navigate(['/addplayertwo'], {skipLocationChange: true})
    
   }
+
+    }
+    
 
 }

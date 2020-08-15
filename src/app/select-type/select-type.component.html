@@ -12,6 +12,9 @@
     <mat-radio-button value="gut" >Gutter</mat-radio-button>
   </mat-radio-group>
   <br>
+  <div *ngIf="this.error===true">
+    <h2>You hafta pick something</h2>
+  </div>
   <section>
   
     <div class="example-button-row">

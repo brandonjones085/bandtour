@@ -23,10 +23,13 @@ export class AddPlayerTwoComponent implements OnInit {
     this.playerService.preventBackButton(); 
     this.playerService.updateCurrent("/addplayertwo")
   }
-
+error = false; 
   onSubmit(){
-   
+   this.error = false; 
     let data = this.playerService.addPlayerTwoForm.value; 
+    if (data.two === "" || data.two === " " || data.two === "  " || data.two === "    "){
+      this.error = true; 
+  }else{
     this.playerService.addNewPlayer(data)
     
     .then(res=>{
@@ -34,5 +37,6 @@ export class AddPlayerTwoComponent implements OnInit {
     })
     this.router.navigate(['/addplayerthree'], {skipLocationChange: true})
   }
+}
 
 }

@@ -24,8 +24,15 @@ export class AddPlayerFourComponent implements OnInit {
     this.playerService.updateCurrent("/addplayerfour")
   }
 
+  error = false; 
+
   onSubmit(){
+    this.error = false;
     let data = this.playerService.addPlayerFourForm.value; 
+
+    if (data.four === "" || data.four === " " || data.four === "  " || data.four === "    "){
+      this.error = true; 
+  }else{
     this.playerService.addNewPlayerFour(data)
     
     .then(res=>{
@@ -34,5 +41,6 @@ export class AddPlayerFourComponent implements OnInit {
     this.router.navigate(['/selectType'], {skipLocationChange: true})
 
   }
+}
 
 }

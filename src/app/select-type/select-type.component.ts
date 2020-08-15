@@ -25,12 +25,16 @@ export class SelectTypeComponent implements OnInit {
     this.playerService.updateCurrent("/selectType"); 
   }
 
-
+  error = false; 
   onSubmit(){
-    
+    this.error = false; 
     let type = this.playerService.selectTypeForm.value; 
-    
-    if(type.type === "pop")
+
+    if(type.type === "")
+    {
+      this.error = true; 
+    }else{
+      if(type.type === "pop")
     {
       type.cash = 1000
     }else if(type.type === "ska"){
@@ -44,6 +48,10 @@ export class SelectTypeComponent implements OnInit {
     .then(res=>{
 
     })
+
+    }
+    
+    
     
 
   }

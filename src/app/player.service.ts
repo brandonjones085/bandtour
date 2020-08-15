@@ -56,7 +56,7 @@ preventBackButton() {
   form = new FormGroup({
     ip: new FormControl(""), 
     id: new FormControl(1), 
-    name: new FormControl(" ", [Validators.required]), 
+    name: new FormControl("", [Validators.required, Validators.minLength(2)]), 
     health: new FormControl(100), 
     streetCred: new FormControl(0),
     current: new FormControl("")
@@ -66,30 +66,30 @@ preventBackButton() {
 
   addPlayerTwoForm = new FormGroup({
     id: new FormControl(2),
-    two: new FormControl(" ", [Validators.required]), 
+    two: new FormControl("", [Validators.required]), 
     health: new FormControl(100)
   })
 
   addPlayerThreeForm = new FormGroup({
     id: new FormControl(3),
-    three: new FormControl(" ", [Validators.required]),  
+    three: new FormControl("", [Validators.required]),  
     health: new FormControl(100)
   })
 
   addPlayerFourForm = new FormGroup({
     id: new FormControl(4),
-    four: new FormControl(" ", [Validators.required]), 
+    four: new FormControl("", [Validators.required]), 
     health: new FormControl(100)
   })
 
   addPlayerFiveForm = new FormGroup({
     id: new FormControl(5),
-    name: new FormControl(" "), 
+    name: new FormControl(""), 
     health: new FormControl(100)
   })
 
   selectTypeForm = new FormGroup({
-    type: new FormControl(" ", [Validators.required]), 
+    type: new FormControl("", [Validators.required]), 
     cash: new FormControl()
   })
 
