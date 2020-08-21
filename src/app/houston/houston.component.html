@@ -10,9 +10,12 @@
             <div class="col-1 mt-5" >
               
             </div>
-            <div class="col-9">
-               <img style="width: 600px; " src="../../assets/images/hous.png" alt="Welcome to East LA">
-               <p style="font-size: 10px">Artwork by: Kevin Middleton</p>
+            <div class="col-9 mt-5">
+                <section>
+                    <img [ngClass]="{'top': paulwall}"  style="width: 600px; " src="../../assets/images/hous.png" alt="Welcome to East LA">
+                    <p [ngClass]="{'top': paulwall}" style="font-size: 10px">Artwork by: Kevin Middleton</p>
+                    <img [ngClass]="{'bottom': paulwall, 'bottom1': !paulwall}"  src="../../assets/images/paulw.png" alt="paul wall">
+                </section>
             </div>
         </div>
     </div>
@@ -44,11 +47,14 @@
                 <h5>T-Shirts</h5><span class="badge badge-secondary">{{this.players.supplies.shirts}}</span>
             </div>
             <div class="col-6 mt-5" *ngIf="this.done===true">
+                <br><br><br>
             <button (click)="playShow()" class="ml-3">Play Show</button><button (click)="goToNext()" class="ml-3">Go to Next Town</button>
             
             <br>
             <br>
              {{this.valueOne}} 
+            
+            
         </div>
             <div class="col-2"></div>
         </div>
@@ -57,8 +63,8 @@
 <div class="container" *ngIf="this.done===false">
     <div class="row">
 
-            <img src="../../assets/images/road.jpg" alt="road" style="width: 100%" class="mt-5">
-            <img src="../../assets/images/van.jpg" alt="van" class="van" >
+            <img class="road" src="../../assets/images/road.jpg" alt="road" style="width: 100%" class="mt-5">
+            <img class="van" src="../../assets/images/van.jpg" alt="van" class="van" >
 
     </div>
     

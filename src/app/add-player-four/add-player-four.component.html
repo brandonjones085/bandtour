@@ -1,8 +1,8 @@
 <body>
     <div class="container">
       <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
+        <div class="col-1"></div>
+        <div class="col-10">
 
           <form  class="mt-5" [formGroup]="this.playerService.addPlayerFourForm" >
               <label for="name">Name of fourth player: </label>
@@ -12,12 +12,12 @@
               </button>
           </form>
           <br>
-          <img src="../../assets/images/nohomebum.png" alt="">
-          <div *ngIf="this.error ===true">
+          <img style="width:50%" src="../../assets/images/nohomebum.png" alt="">
+          <div *ngIf="this.error === true">
             <h2>You gotta name your bandmate brah</h2>
           </div>
         </div>
-        <div class="col-sm"></div>
+        <div class="col-1"></div>
       </div>
     </div>
   </body>

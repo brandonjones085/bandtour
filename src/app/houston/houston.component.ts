@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { interval } from 'rxjs'; 
 import { PlayerService } from '../player.service';
 import { PlatformLocation } from '@angular/common';
+import { Howl } from 'howler';
 
 @Component({
   selector: 'app-houston',
@@ -25,18 +26,25 @@ export class HoustonComponent implements OnInit {
   players; 
   i = 0;
   done=false; 
+  paulwall=true; 
   num; 
+
+  paul = new Howl({
+    src: ["../../assets/audio/paul.mp3"], html5: true
+  })
+
   constructor( private location: PlatformLocation, private router: Router, public playerService: PlayerService) { 
     // preventing back button in browser implemented by "Samba Siva"  
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
-      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+      this.router.navigate(["/welcome"], {skipLocationChange: true})
     })
   }
 
   ngOnInit():void{
     this.playerService.updateCurrent("/houston")
-  
+    
+   
    
     this.playerService.getPlayer().subscribe(data=>{
       this.players = data.map(e=>{
@@ -86,6 +94,8 @@ export class HoustonComponent implements OnInit {
       if(this.playerService.gameOver === true){
         this.router.navigate(['/gameover'], {skipLocationChange: true})
       }
+     
+      
       sub.unsubscribe(); 
     })
     
@@ -101,6 +111,11 @@ export class HoustonComponent implements OnInit {
       if(this.playerService.gameOver === true){
         this.router.navigate(['/gameover'], {skipLocationChange: true})
       }
+
+      if(this.paulwall){//paul wall appears
+        this.paul.play()
+      }
+
       this.done=true; 
       sub.unsubscribe(); 
     })
@@ -110,6 +125,7 @@ export class HoustonComponent implements OnInit {
   
    public valueOne: string =""; 
    playShow(){
+    
     
     this.valueOne = this.playerService.playShow(); 
  
@@ -124,6 +140,7 @@ export class HoustonComponent implements OnInit {
     }
 
    goToNext(){
+     this.paul.stop()
     this.router.navigate(['/orleans'], {skipLocationChange: true})
    }
 

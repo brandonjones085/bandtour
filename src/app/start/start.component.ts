@@ -24,7 +24,7 @@ export class StartComponent implements OnInit {
   constructor(public playerService: PlayerService, private router: Router, private ip: IpServiceService, private location: PlatformLocation) { 
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
-      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+      this.router.navigate(["/welcome"], {skipLocationChange: true})
     })
   }
 

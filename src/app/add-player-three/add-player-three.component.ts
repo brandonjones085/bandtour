@@ -14,7 +14,7 @@ export class AddPlayerThreeComponent implements OnInit {
   constructor(private location: PlatformLocation, private router: Router, public playerService: PlayerService) {
     location.onPopState(()=>{
       
-      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+      this.router.navigate(["/welcome"], {skipLocationChange: true})
     })
    }
 

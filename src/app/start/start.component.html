@@ -1,25 +1,24 @@
-
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-2"></div>
-      <div class="col-8">
+      <div class="col-1"></div>
+      <div class="col-10">
         <h3 class="mt-5">What's your first band members name?</h3>
         <br><br>
         <form class="mt-5" [formGroup]="this.playerService.form" >
-          <label for="name">Name: </label>
+          <label for="name" size="5%">Name: </label>
           <input type="text" formControlName="name">
           <button (click)="onSubmit()">Submit
             
           </button>
       </form>
       <br>
-      <img style="width: 500px" src="../../assets/images/band.png" alt="Dog el hombre">
-      <div *ngIf="this.error ===true">
+      <img style="width: 100%" src="../../assets/images/band.png" alt="Dog el hombre">
+      <div *ngIf="this.error === true">
       <h2>You gotta name your bandmate brah</h2>
     </div>
       </div>
-      <div class="col-2"></div>
+      <div class="col-1"></div>
     </div>
   </div>
 

@@ -30,7 +30,7 @@ export class BirmingComponent implements OnInit {
     // preventing back button in browser implemented by "Samba Siva"  
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
-      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+      this.router.navigate(["/welcome"], {skipLocationChange: true})
     })
    }
 
@@ -62,30 +62,15 @@ export class BirmingComponent implements OnInit {
   @Input() init:string; 
   public value:string = ""; 
 
-  calculateCred(){
-    if(this.players.type.type === "gut"){
-      console.log("FOUND")
-     this.streetCred = 50; 
-    }else if(this.players.type.type.type==="ska"){
-      this.streetCred = 30; 
-    }else{
-      this.streetCred = 20; 
-    }
-  }
-
-  calculateHealth(){
-
-  }
-
-
-
-
   start(){
 
     this.value = this.playerService.play(); 
    const sub = interval(3000).subscribe(x=>{
     
      this.one(); 
+     if(this.playerService.gameOver === true){
+      this.router.navigate(['/gameover'], {skipLocationChange: true})
+    }
     sub.unsubscribe(); 
    })
    
@@ -97,10 +82,13 @@ export class BirmingComponent implements OnInit {
       this.value = "Shlomo took bathsalts and was left in the desert"
       
       this.two(); 
+      if(this.playerService.gameOver === true){
+        this.router.navigate(['/gameover'], {skipLocationChange: true})
+      }
+     
+      
       sub.unsubscribe(); 
     })
-    
-    
    }
 
 
@@ -109,10 +97,16 @@ export class BirmingComponent implements OnInit {
     
     const sub = interval(3000).subscribe(x=>{
       this.value = "Shlomo took bathsalts and was left in the desert"
+      if(this.playerService.gameOver === true){
+        this.router.navigate(['/gameover'], {skipLocationChange: true})
+      }
+
+   
+
       this.done=true; 
       sub.unsubscribe(); 
     })
-    this.calculateCred(); 
+    
 
    }
   

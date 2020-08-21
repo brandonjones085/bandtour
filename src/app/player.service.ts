@@ -26,6 +26,7 @@ export class PlayerService {
   streetCred: number; 
   totalHealth: number
   gameOver= false; 
+  backgroundSound = true; 
 
   excel = new Howl({
     src: ["../../assets/audio/excel.mp3"], html5: true
@@ -314,6 +315,11 @@ preventBackButton() {
       let jerky = this.player.supplies.jerky;
       let nachos = this.player.supplies.nachos;
       
+      //sets bools to false if player is already dead
+      if( oneHealth < 0 || twoHealth < 0 || threeHealth < 0 || fourHealth < 0){
+        alive = false; 
+      }
+
 
       //remove supplies
       if (burritos > 0){
@@ -443,7 +449,7 @@ preventBackButton() {
     }else if (totalHealth > 0 && totalHealth < 150){
       this.health = "Poor"
     }else if(totalHealth < 1){
-      if(num2 === 1){//audio for game over
+      if(num2 === 0){//audio for game over
         this.wha.play()
       }else{
         this.nodice.play()
@@ -511,17 +517,19 @@ preventBackButton() {
           this.updateShirt(shirt);
           cash += num2;  
           this.updateCurrent(cash); 
-          if(num4 ===1){ //audio for good stuff
+
+          if(num4 ===0){ //audio for good stuff
             this.noway.play()
           }else{
             this.excel.play()
           }
           statement = "You sold one of your shirts for $" + num2; 
         }
-      }else if(num1 === 2){
+      }else if(num1 === 0){
         if (cash > 0){
           statement = "While you were playing the show, somebody robboed your van for $" + num3; 
           cash -= num3; 
+          this.updateCash(cash); 
           if (cash < 0){
             cash = 0; 
             this.updateCash(cash); 

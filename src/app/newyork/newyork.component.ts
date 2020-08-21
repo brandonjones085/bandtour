@@ -30,7 +30,7 @@ export class NewyorkComponent implements OnInit {
     // preventing back button in browser implemented by "Samba Siva"  
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
-      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+      this.router.navigate(["/welcome"], {skipLocationChange: true})
     })
   }
 
@@ -86,9 +86,11 @@ export class NewyorkComponent implements OnInit {
    const sub = interval(3000).subscribe(x=>{
     
      this.one(); 
+     if(this.playerService.gameOver === true){
+      this.router.navigate(['/gameover'], {skipLocationChange: true})
+    }
     sub.unsubscribe(); 
    })
-   
   }
 
   one(){ 
@@ -97,9 +99,13 @@ export class NewyorkComponent implements OnInit {
       this.value = "Shlomo took bathsalts and was left in the desert"
       
       this.two(); 
+      if(this.playerService.gameOver === true){
+        this.router.navigate(['/gameover'], {skipLocationChange: true})
+      }
+     
+      
       sub.unsubscribe(); 
     })
-    
     
    }
 
@@ -109,10 +115,13 @@ export class NewyorkComponent implements OnInit {
     
     const sub = interval(3000).subscribe(x=>{
       this.value = "Shlomo took bathsalts and was left in the desert"
+      if(this.playerService.gameOver === true){
+        this.router.navigate(['/gameover'], {skipLocationChange: true})
+      }
+
       this.done=true; 
       sub.unsubscribe(); 
     })
-    this.calculateCred(); 
 
    }
   

@@ -15,9 +15,68 @@ body{
     background-color: darkgrey;
 }
 
-img{
+.road{
     width: 150%; 
 }
+
+.van{
+    width: 150%; 
+}
+
+/* section{
+    position: relative;
+} */
+
+ section img{
+    position: absolute;
+} 
+
+.top{
+    display: block;
+    -webkit-animation: fade 8s;
+    animation: fade 8s;
+    animation-fill-mode: forwards;
+}
+
+  @keyframes fade {
+    0% { opacity: 1;}
+    99% { opacity: 0.01;width: 100%; height: 100%;}
+    100% { opacity: 0;width: 100%; height: 100%;}
+}
+
+.bottom{
+    animation-name: fade2;
+	animation-timing-function: ease-in-out;
+	
+	animation-duration: 8s;
+    animation-direction: alternate;
+    width: 50%;
+}
+
+.bottom1{
+    opacity: 0%;
+}
+
+@keyframes fade2{
+    100% {
+		opacity: 1;
+	}
+    
+    75% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 0;
+	}
+	0% {
+		opacity: 0;
+    }
+	
+}
+
+
+
+
 
 @keyframes myanimation{
     from{

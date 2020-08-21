@@ -16,7 +16,7 @@ export class SuppliesComponent implements OnInit {
     // preventing back button in browser implemented by "Samba Siva"  
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
-      this.router.navigateByUrl("/welcome", {skipLocationChange: true})
+      this.router.navigate(["/welcome"], {skipLocationChange: true})
     })
    }
    
@@ -49,7 +49,7 @@ export class SuppliesComponent implements OnInit {
     let totJer = stuff.jerky * 5; 
     let totNac = stuff.nachos * 5; 
     let totSar = stuff.sardines * 5; 
-    let totShi = stuff.shirts * 5; 
+    let totShi = stuff.shirts * 10; 
 
     let total = totBur + totJer + totNac + totSar + totShi; 
     if (total > this.cash){

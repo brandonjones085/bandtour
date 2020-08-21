@@ -36,7 +36,12 @@ export class WelcomeComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.sound.play()
+    
+    //used to control the background music
+    // while(this.playerService.backgroundSound){
+    //   // this.sound.play()
+    // }
+    
     this.getIP(); 
 
     this.playerService.getPlayer().subscribe(data=>{
