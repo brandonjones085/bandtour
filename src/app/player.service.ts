@@ -305,7 +305,7 @@ preventBackButton() {
     const num2 = Math.floor(Math.random() * 2)
     
     if (this.player){
-      const num = Math.floor(Math.random() * 4)
+      let num = Math.floor(Math.random() * 4)
       let oneHealth = this.player.one.health; 
       let twoHealth = this.player.two.health; 
       let threeHealth = this.player.three.health; 
@@ -362,8 +362,12 @@ preventBackButton() {
             statement = name + " has died"
             alive = false; 
         }
-          
+
+        }else{
+          num = 1
         }
+          
+        
         
 
       }else if(num === 1){
@@ -387,6 +391,8 @@ preventBackButton() {
             alive = false; 
           }
          
+        }else{
+          num = 2
         }
         
 
@@ -411,6 +417,8 @@ preventBackButton() {
           }
        
 
+        }else{
+          num = 3
         }
         
       }else if (num === 3){
@@ -433,6 +441,8 @@ preventBackButton() {
             alive = false; 
           }
        
+        }else{
+          num = 0
         }
         
       }
