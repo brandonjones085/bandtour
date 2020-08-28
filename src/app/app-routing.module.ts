@@ -23,6 +23,7 @@ import { PhoenixComponent } from './phoenix/phoenix.component';
 import { GameoverComponent } from './gameover/gameover.component';
 import { AddPlayerThreeComponent } from './add-player-three/add-player-three.component';
 import {AddPlayerFourComponent} from './add-player-four/add-player-four.component'
+import { ChicagoComponent } from './chicago/chicago.component';
 
 const routes: Routes = [
   {path: "", component: WelcomeComponent},
@@ -48,7 +49,8 @@ const routes: Routes = [
   {path: "viewSupplies", component: ViewSuppliesComponent}, 
   {path: "gameover", component: GameoverComponent}, 
   {path: "addplayerthree", component: AddPlayerThreeComponent}, 
-  {path: "addplayerfour", component: AddPlayerFourComponent}
+  {path: "addplayerfour", component: AddPlayerFourComponent},
+  {path: "chicago", component: ChicagoComponent}
 ];
 
 @NgModule({

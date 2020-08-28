@@ -75,7 +75,8 @@ preventBackButton() {
     name: new FormControl("", [Validators.required, Validators.minLength(2)]), 
     health: new FormControl(100), 
     streetCred: new FormControl(0),
-    current: new FormControl("")
+    current: new FormControl(""), 
+    alive: new FormControl(true)
   })
 
 
@@ -83,19 +84,22 @@ preventBackButton() {
   addPlayerTwoForm = new FormGroup({
     id: new FormControl(2),
     two: new FormControl("", [Validators.required]), 
-    health: new FormControl(100)
+    health: new FormControl(100), 
+    alive: new FormControl(true)
   })
 
   addPlayerThreeForm = new FormGroup({
     id: new FormControl(3),
     three: new FormControl("", [Validators.required]),  
-    health: new FormControl(100)
+    health: new FormControl(100), 
+    alive: new FormControl(true)
   })
 
   addPlayerFourForm = new FormGroup({
     id: new FormControl(4),
     four: new FormControl("", [Validators.required]), 
-    health: new FormControl(100)
+    health: new FormControl(100), 
+    alive: new FormControl(true)
   })
 
   addPlayerFiveForm = new FormGroup({
@@ -210,6 +214,34 @@ preventBackButton() {
     })
   }
 
+  updateFourAlive(){
+    return new Promise<any>((resolve, reject)=>{
+  
+      this.firestore.doc('player/'+this.playerid).update({ "four.alive" : false})
+    })
+  }
+
+  updateOneAlive(){
+    return new Promise<any>((resolve, reject)=>{
+  
+      this.firestore.doc('player/'+this.playerid).update({ "one.alive" : false})
+    })
+  }
+
+  updateTwoAlive(){
+    return new Promise<any>((resolve, reject)=>{
+  
+      this.firestore.doc('player/'+this.playerid).update({ "two.alive" : false})
+    })
+  }
+
+  updateThreeAlive(){
+    return new Promise<any>((resolve, reject)=>{
+  
+      this.firestore.doc('player/'+this.playerid).update({ "three.alive" : false})
+    })
+  }
+
   updateStreetCred(newCred){
     return new Promise<any>((resolve, reject)=>{
       this.firestore.doc('player/'+this.playerid).update({ "one.streetCred" : newCred})
@@ -314,12 +346,10 @@ preventBackButton() {
       let sardines = this.player.supplies.sardines; 
       let jerky = this.player.supplies.jerky;
       let nachos = this.player.supplies.nachos;
-      
-      //sets bools to false if player is already dead
-      if( oneHealth < 0 || twoHealth < 0 || threeHealth < 0 || fourHealth < 0){
-        alive = false; 
-      }
 
+
+      const playerArr = [this.player.one, this.player.two, this.player.three, this.player.four]; 
+      
 
       //remove supplies
       if (burritos > 0){
@@ -342,6 +372,8 @@ preventBackButton() {
       
       if(num === 0){
         
+    
+
         name = this.player.one.name; //gets name
         player = this.player.one //gets player object
 
@@ -352,7 +384,7 @@ preventBackButton() {
           minusHealthPoints += 20; 
         }
 
-        if (oneHealth > 0){ //is player alive?
+      
           playerHealth = oneHealth - minusHealthPoints; 
           this.updateOneHealth(playerHealth); //sends updated health
 
@@ -360,17 +392,18 @@ preventBackButton() {
             this.updateOneHealth(0)
         
             statement = name + " has died"
+            this.updateOneAlive(); 
+          }
+
+          if(player.alive === false){
             alive = false; 
-        }
-
-        }else{
-          num = 1
-        }
-          
+          }
         
         
-
       }else if(num === 1){
+        
+
+
         name = this.player.two.two; 
         player = this.player.two
 
@@ -381,22 +414,25 @@ preventBackButton() {
           minusHealthPoints += 20; 
         }
         
-        if (twoHealth > 0){
+
           playerHealth = twoHealth - minusHealthPoints; 
           this.updateTwoHealth(playerHealth); 
 
-          if(playerHealth <= 0){
+          if(playerHealth <= 0 ){
             this.updateTwoHealth(0)
             statement = name + " has died"
+            this.updateTwoAlive(); 
+          }
+
+          if(player.alive === false){
             alive = false; 
           }
-         
-        }else{
-          num = 2
-        }
         
 
       }else if(num === 2){
+
+
+    
         name = this.player.three.three
         player = this.player.three
 
@@ -406,22 +442,24 @@ preventBackButton() {
         if(outOfSupplies){
           minusHealthPoints += 20; 
         }
-        if(threeHealth > 0){
+      
           playerHealth = threeHealth - minusHealthPoints; 
           this.updateThreeHealth(playerHealth); 
 
           if(playerHealth <= 0){
             this.updateThreeHealth(0)
             statement = name + " has died"
+            this.updateThreeAlive(); 
+          }
+        
+          if(player.alive === false){
             alive = false; 
           }
-       
-
-        }else{
-          num = 3
-        }
         
       }else if (num === 3){
+
+
+
         name = this.player.four.four
         player = this.player.four
 
@@ -431,19 +469,20 @@ preventBackButton() {
         if(outOfSupplies){
           minusHealthPoints += 20; 
         }
-        if(fourHealth > 0){
+     
           playerHealth = fourHealth - minusHealthPoints; 
           this.updateFourHealth(playerHealth);
 
           if(playerHealth <= 0){
             this.updateFourHealth(0)
             statement = name + " has died"
+            this.updateFourAlive(); 
+            }
+
+          if(player.alive === false){
             alive = false; 
           }
-       
-        }else{
-          num = 0
-        }
+        
         
       }
 
@@ -484,6 +523,8 @@ preventBackButton() {
         statement = name; 
 
         statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
+      }else {
+        statement = " NOTHING HAPPENED BECAUSE THEy DEAd"
       }
     
     }

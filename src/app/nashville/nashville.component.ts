@@ -26,13 +26,13 @@ export class NashvilleComponent implements OnInit {
   i = 0;
   done=false; 
   num; 
-  constructor(private location: PlatformLocation, private router: Router, public playerService: PlayerService) {
+  constructor(private location: PlatformLocation, private router: Router, public playerService: PlayerService) { 
     // preventing back button in browser implemented by "Samba Siva"  
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
       this.router.navigate(["/welcome"], {skipLocationChange: true})
     })
-   }
+  }
 
   ngOnInit():void{
     this.playerService.updateCurrent("/nashville")
@@ -66,14 +66,14 @@ export class NashvilleComponent implements OnInit {
   start(){
 
     this.value = this.playerService.play(); 
-    const sub = interval(3000).subscribe(x=>{
-     
-      this.one(); 
-      if(this.playerService.gameOver === true){
-       this.router.navigate(['/gameover'], {skipLocationChange: true})
-     }
-     sub.unsubscribe(); 
-    })
+   const sub = interval(3000).subscribe(x=>{
+    
+     this.one(); 
+     if(this.playerService.gameOver === true){
+      this.router.navigate(['/gameover'], {skipLocationChange: true})
+    }
+    sub.unsubscribe(); 
+   })
    
   }
 
@@ -86,8 +86,6 @@ export class NashvilleComponent implements OnInit {
       if(this.playerService.gameOver === true){
         this.router.navigate(['/gameover'], {skipLocationChange: true})
       }
-     
-      
       sub.unsubscribe(); 
     })
     
@@ -102,10 +100,10 @@ export class NashvilleComponent implements OnInit {
       if(this.playerService.gameOver === true){
         this.router.navigate(['/gameover'], {skipLocationChange: true})
       }
-
       this.done=true; 
       sub.unsubscribe(); 
     })
+  
    }
   
    public valueOne: string =""; 
@@ -121,7 +119,7 @@ export class NashvilleComponent implements OnInit {
        this.goToNext(); 
        sub.unsubscribe(); 
      })
-       
+     
     }
 
    goToNext(){

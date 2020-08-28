@@ -8,16 +8,18 @@
 
 *, h2, h3, h4, h5{
     font-family: 'arcade';
-
 }
+
 
 body{
     background-color: darkgrey;
 }
 
+
 img{
     width: 150%; 
 }
+
 
 @keyframes myanimation{
     from{
