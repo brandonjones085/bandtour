@@ -31,6 +31,7 @@ export class WelcomeComponent implements OnInit {
   i: number
   players: any; 
   newUser = true; 
+  back
   sound = new Howl({
     src: ["../../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true, loop: true
   })
@@ -38,10 +39,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {
     
     //used to control the background music
-    // while(this.playerService.backgroundSound){
-    //   // this.sound.play()
-    // }
-    
+
     this.getIP(); 
 
     this.playerService.getPlayer().subscribe(data=>{
@@ -80,7 +78,9 @@ export class WelcomeComponent implements OnInit {
   }
 
   start(){
-    
+
+    this.playerService.playMusic(); 
+
     this.loadStart = true; 
     this.router.navigate(['/start'], {skipLocationChange: true})
   }

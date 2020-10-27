@@ -122,6 +122,10 @@ export class NashvilleComponent implements OnInit {
      
     }
 
+    getSupplies(){
+      this.router.navigate(['/nSupplies'], {skipLocationChange: true})
+    }
+
    goToNext(){
     this.router.navigate(['/chicago'], {skipLocationChange: true})
    }

@@ -111,7 +111,7 @@ export class HoustonComponent implements OnInit {
       if(this.playerService.gameOver === true){
         this.router.navigate(['/gameover'], {skipLocationChange: true})
       }
-
+      this.playerService.stopMusic()
       if(this.paulwall){//paul wall appears
         this.paul.play()
       }
@@ -124,6 +124,8 @@ export class HoustonComponent implements OnInit {
    }
   
    public valueOne: string =""; 
+
+   
    playShow(){
     
     
@@ -141,6 +143,8 @@ export class HoustonComponent implements OnInit {
 
    goToNext(){
      this.paul.stop()
+     this.playerService.playMusic()
+     this.playerService.play(); 
     this.router.navigate(['/orleans'], {skipLocationChange: true})
    }
 

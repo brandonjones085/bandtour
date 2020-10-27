@@ -31,13 +31,14 @@ import { BirmingComponent } from './birming/birming.component';
 import { NashvilleComponent } from './nashville/nashville.component';
 import { ChicagoComponent } from './chicago/chicago.component';
 import { DetroitComponent } from './detroit/detroit.component';
-import { BaltiComponent } from './balti/balti.component';
-import { PhillyComponent } from './philly/philly.component';
+
 import { NewyorkComponent } from './newyork/newyork.component';
 import { FinalComponent } from './final/final.component';
 import { GameoverComponent } from './gameover/gameover.component';
 import { AddPlayerThreeComponent } from './add-player-three/add-player-three.component';
 import { AddPlayerFourComponent } from './add-player-four/add-player-four.component';
+import { NSuppliesComponent } from './n-supplies/n-supplies.component';
+
 
 
 
@@ -62,13 +63,14 @@ import { AddPlayerFourComponent } from './add-player-four/add-player-four.compon
     NashvilleComponent,
     ChicagoComponent,
     DetroitComponent,
-    BaltiComponent,
-    PhillyComponent,
+ 
     NewyorkComponent,
     FinalComponent,
     GameoverComponent,
     AddPlayerThreeComponent,
-    AddPlayerFourComponent
+    AddPlayerFourComponent,
+    NSuppliesComponent,
+ 
    
   ],
   imports: [

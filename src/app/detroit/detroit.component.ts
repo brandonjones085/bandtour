@@ -132,8 +132,10 @@ export class DetroitComponent implements OnInit {
     }
     
 
+
+
    goToNext(){
-    this.router.navigate(['/balti'], {skipLocationChange: true})
+    this.router.navigate(['/newyork'], {skipLocationChange: true})
    }
 
 }

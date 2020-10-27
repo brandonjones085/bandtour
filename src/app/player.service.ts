@@ -524,7 +524,7 @@ preventBackButton() {
 
         statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
       }else {
-        statement = " NOTHING HAPPENED BECAUSE THEy DEAd"
+        statement = ""
       }
     
     }
@@ -578,7 +578,7 @@ preventBackButton() {
         }
       }else if(num1 === 0){
         if (cash > 0){
-          statement = "While you were playing the show, somebody robboed your van for $" + num3; 
+          statement = "While you were playing the show, somebody robbed your van for $" + num3; 
           cash -= num3; 
           this.updateCash(cash); 
           if (cash < 0){
@@ -589,6 +589,8 @@ preventBackButton() {
           }
           
         }
+      }else{
+        statement + "You played and show and 2 people showed up. One said you sucked and left early"
       }
       
     
@@ -598,6 +600,17 @@ preventBackButton() {
   }//end of playShow function
 
 
+  sound = new Howl({
+    src: ["../../assets/audio/bensound-jazzyfrenchy.mp3"], html5: true, loop: true
+  })
+
+  playMusic(){
+    this.sound.play()
+  }
+
+  stopMusic(){
+    this.sound.stop()
+  }
   
 
 }

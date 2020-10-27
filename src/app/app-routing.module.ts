@@ -9,7 +9,6 @@ import { ViewSuppliesComponent } from './view-supplies/view-supplies.component';
 import {ChoiceComponent} from './choice/choice.component'; 
 import { FirstStopComponent } from './first-stop/first-stop.component';
 
-import { BaltiComponent } from './balti/balti.component';
 import { BirmingComponent } from './birming/birming.component';
 import { DetroitComponent } from './detroit/detroit.component';
 import { ElPasoComponent } from './el-paso/el-paso.component';
@@ -18,12 +17,13 @@ import { HoustonComponent } from './houston/houston.component';
 import { NashvilleComponent } from './nashville/nashville.component';
 import { NewyorkComponent } from './newyork/newyork.component';
 import { OrleansComponent } from './orleans/orleans.component';
-import { PhillyComponent } from './philly/philly.component';
+
 import { PhoenixComponent } from './phoenix/phoenix.component';
 import { GameoverComponent } from './gameover/gameover.component';
 import { AddPlayerThreeComponent } from './add-player-three/add-player-three.component';
 import {AddPlayerFourComponent} from './add-player-four/add-player-four.component'
 import { ChicagoComponent } from './chicago/chicago.component';
+import { NSuppliesComponent } from './n-supplies/n-supplies.component';
 
 const routes: Routes = [
   {path: "", component: WelcomeComponent},
@@ -34,8 +34,6 @@ const routes: Routes = [
   {path: "choice", component: ChoiceComponent}, 
   {path: "viewSupplies", component: ViewSuppliesComponent}, 
   {path: "first", component: FirstStopComponent }, 
-  
-  {path: "balti", component: BaltiComponent}, 
   {path: "birming", component: BirmingComponent}, 
   {path: "detroit", component: DetroitComponent}, 
   {path: "elpaso", component: ElPasoComponent}, 
@@ -44,7 +42,7 @@ const routes: Routes = [
   {path: "nashville", component: NashvilleComponent}, 
   {path: "newyork", component: NewyorkComponent}, 
   {path: "orleans", component: OrleansComponent}, 
-  {path: "philly", component: PhillyComponent}, 
+  {path: "nSupplies", component: NSuppliesComponent},
   {path: "phoenix", component: PhoenixComponent}, 
   {path: "viewSupplies", component: ViewSuppliesComponent}, 
   {path: "gameover", component: GameoverComponent}, 

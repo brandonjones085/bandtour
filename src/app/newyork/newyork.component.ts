@@ -73,10 +73,6 @@ export class NewyorkComponent implements OnInit {
     }
   }
 
-  calculateHealth(){
-
-  }
-
 
 
 
@@ -125,7 +121,6 @@ export class NewyorkComponent implements OnInit {
 
    }
   
-
 
    public valueOne: string =""; 
 

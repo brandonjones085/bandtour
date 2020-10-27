@@ -5,18 +5,16 @@ import {Player} from 'src/app/player.model';
 import { PlatformLocation } from '@angular/common';
 
 @Component({
-  selector: 'app-supplies',
-  templateUrl: './supplies.component.html',
-  styleUrls: ['./supplies.component.css']
+  selector: 'app-n-supplies',
+  templateUrl: './n-supplies.component.html',
+  styleUrls: ['./n-supplies.component.css']
 })
-export class SuppliesComponent implements OnInit {
-
- 
+export class NSuppliesComponent implements OnInit {
   constructor(private location: PlatformLocation, private router: Router, public playerService: PlayerService) {
     // preventing back button in browser implemented by "Samba Siva"  
     location.onPopState(()=>{
       console.log("PRESSED BACK"); 
-      this.router.navigate(["/welcome"], {skipLocationChange: true})
+      this.router.navigate(["/nashville"], {skipLocationChange: true})
     })
    }
    
@@ -36,7 +34,7 @@ export class SuppliesComponent implements OnInit {
       this.cash = this.players[0].type.cash; 
     })
 
-    this.playerService.updateCurrent("/supplies"); 
+    this.playerService.updateCurrent("/nSupplies"); 
 
   }
   
@@ -61,7 +59,7 @@ export class SuppliesComponent implements OnInit {
       this.playerService.updateCash(newTotal)
   
     .then(res=>{})
-    this.router.navigate(['/choice'], {skipLocationChange: true})
+    this.router.navigate(['/chicago'], {skipLocationChange: true})
     }
 
 

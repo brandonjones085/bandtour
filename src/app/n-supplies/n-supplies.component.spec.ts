@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BaltiComponent } from './balti.component';
+import { NSuppliesComponent } from './n-supplies.component';
 
-describe('BaltiComponent', () => {
-  let component: BaltiComponent;
-  let fixture: ComponentFixture<BaltiComponent>;
+describe('NSuppliesComponent', () => {
+  let component: NSuppliesComponent;
+  let fixture: ComponentFixture<NSuppliesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BaltiComponent ]
+      declarations: [ NSuppliesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BaltiComponent);
+    fixture = TestBed.createComponent(NSuppliesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
