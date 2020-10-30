@@ -15,6 +15,12 @@ body{
     background-color: darkgrey;
 }
 
+.ph{
+    height: 350px; 
+  
+
+}
+
 img{
     width: 150%; 
 }

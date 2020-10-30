@@ -39,7 +39,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {
     
     //used to control the background music
-
+    this.playerService.stopMusic()
     this.getIP(); 
 
     this.playerService.getPlayer().subscribe(data=>{
@@ -79,7 +79,7 @@ export class WelcomeComponent implements OnInit {
 
   start(){
 
-    this.playerService.playMusic(); 
+    //this.playerService.playMusic(); 
 
     this.loadStart = true; 
     this.router.navigate(['/start'], {skipLocationChange: true})
