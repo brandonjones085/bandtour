@@ -23,7 +23,7 @@ export class GameoverComponent implements OnInit {
 
   playAgain(){
     this.playerService.deleteDoc(); 
-    this.router.navigate(['/start'], {skipLocationChange: true}); 
+    this.router.navigate(['/welcome'], {skipLocationChange: true}); 
   }
 
 }
