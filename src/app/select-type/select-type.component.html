@@ -9,10 +9,13 @@
 <mat-radio-group formControlName="type"  aria-label="Select an option">
     <br>
     <mat-radio-button value="pop">Pop</mat-radio-button>
+    <p>Easy - Start with $1000</p>
     <br>
     <mat-radio-button value="ska"  >Ska</mat-radio-button>
+    <p>Medium - Start with $500</p>
     <br>
     <mat-radio-button value="gut" >Gutter</mat-radio-button>
+    <p>Hard - Start with $100</p>
   </mat-radio-group>
   <br>
   <div *ngIf="this.error===true">

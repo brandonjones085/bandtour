@@ -320,9 +320,19 @@ preventBackButton() {
     const disasterDict = [
     {action: " got scabes", points: 10}, 
     {action: " got diarrhea from eating rotten food", points: 10}, 
-    {action: " took bathsalts and was left behind", points: 50}, 
+    {action: " took bathsalts", points: 50}, 
     {action: " got staph infection from a stick 'n poke", points: 20}, 
-    {action: " got boot rot from not changing socks", points: 20}
+    {action: " got boot rot from not changing socks", points: 20}, 
+    {action: " broke their leg trying to learn a pop shove it", points: 10}, 
+    {action: " took meth", points: 50}, 
+    {action: " was shanked by a homebum", points: 20}, 
+    {action: " got Covid", points: 20}, 
+    {action: " got bedbugs", points: 20}, 
+    {action: " has gangrene on an infected cut", points: 50}, 
+    {action: " gave everybody dysentery because they suck at washing their hands", points: 10}, 
+    {action: " has pneumonia", points: 20}, 
+    {action: " is a wussy", points: 20}, 
+    {action: " fell asleep in an ant pile", points: 40}
   ]
 
     this.getPlay(this.playerid)
@@ -334,7 +344,7 @@ preventBackButton() {
     let outOfSupplies = false; 
     let alive = true; 
     
-    const num1 = Math.floor(Math.random() * 4)
+    const num3 = Math.floor(Math.random() * 15)
     const num2 = Math.floor(Math.random() * 2)
     
     if (this.player){
@@ -373,7 +383,7 @@ preventBackButton() {
         name = this.player.one.name; //gets name
         player = this.player.one //gets player object
 
-        var minusHealthPoints = disasterDict[num1].points; //amount of damage from object
+        var minusHealthPoints = disasterDict[num3].points; //amount of damage from object
        
 
         if(outOfSupplies){  //checks supplies bool
@@ -403,7 +413,7 @@ preventBackButton() {
         name = this.player.two.two; 
         player = this.player.two
 
-        var minusHealthPoints = disasterDict[num1].points; 
+        var minusHealthPoints = disasterDict[num3].points; 
         console.log(minusHealthPoints)
         
         if(outOfSupplies){
@@ -433,7 +443,7 @@ preventBackButton() {
         name = this.player.three.three
         player = this.player.three
 
-        var minusHealthPoints = disasterDict[num1].points; 
+        var minusHealthPoints = disasterDict[num3].points; 
         console.log(minusHealthPoints)
 
         if(outOfSupplies){
@@ -443,11 +453,13 @@ preventBackButton() {
           playerHealth = threeHealth - minusHealthPoints; 
           this.updateThreeHealth(playerHealth); 
 
-          if(playerHealth <= 0){
+          if(playerHealth <= 0 && player.alive === true){
             this.updateThreeHealth(0)
             alive = false; 
             statement = name + " has died"
             this.updateThreeAlive(); 
+          }else{
+            statement = ""
           }
         
           if(player.alive === false){
@@ -461,7 +473,7 @@ preventBackButton() {
         name = this.player.four.four
         player = this.player.four
 
-        var minusHealthPoints = disasterDict[num1].points; 
+        var minusHealthPoints = disasterDict[num3].points; 
         console.log(minusHealthPoints)
 
         if(outOfSupplies){
@@ -519,7 +531,7 @@ preventBackButton() {
       if (player.alive === true){
         statement = name; 
 
-        statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
+        statement += disasterDict[num3].action; //returns the whole statment which is printed to the screen; 
       }
     
     }
@@ -531,15 +543,6 @@ preventBackButton() {
 
   //The majority of the game logic is here
   playShow(){
-
-
-    const disasterDict = [
-    {action: " got scabes", points: 10}, 
-    {action: " got diarrhea from eating rotten food", points: 10}, 
-    {action: " took bathsalts and was left behind", points: 50}, 
-    {action: " got staph infection from a stick 'n poke", points: 20}, 
-    {action: " got boot rot from not changing socks", points: 20}
-  ]
 
     this.getPlay(this.playerid)
     let statement=""; 

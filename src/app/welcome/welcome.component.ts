@@ -82,6 +82,12 @@ export class WelcomeComponent implements OnInit {
     this.playerService.playMusic(); 
 
     this.loadStart = true; 
+
+    if(this.newUser === false){
+      this.playerService.deleteDoc(); 
+    }
+
+
     this.router.navigate(['/start'], {skipLocationChange: true})
   }
 
