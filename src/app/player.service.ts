@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import { LocationStrategy } from '@angular/common';
 import {Howl} from 'howler'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -367,18 +368,13 @@ preventBackButton() {
       }else{
         outOfSupplies = true; 
       }
-
-
       
       if(num === 0){
-        
-    
-
         name = this.player.one.name; //gets name
         player = this.player.one //gets player object
 
         var minusHealthPoints = disasterDict[num1].points; //amount of damage from object
-        console.log(minusHealthPoints) //for logging
+       
 
         if(outOfSupplies){  //checks supplies bool
           minusHealthPoints += 20; 
@@ -390,7 +386,7 @@ preventBackButton() {
 
           if(playerHealth <= 0){ //
             this.updateOneHealth(0)
-        
+            alive = false; 
             statement = name + " has died"
             this.updateOneAlive(); 
           }
@@ -420,6 +416,7 @@ preventBackButton() {
 
           if(playerHealth <= 0 ){
             this.updateTwoHealth(0)
+            alive = false; 
             statement = name + " has died"
             this.updateTwoAlive(); 
           }
@@ -448,6 +445,7 @@ preventBackButton() {
 
           if(playerHealth <= 0){
             this.updateThreeHealth(0)
+            alive = false; 
             statement = name + " has died"
             this.updateThreeAlive(); 
           }
@@ -472,9 +470,10 @@ preventBackButton() {
      
           playerHealth = fourHealth - minusHealthPoints; 
           this.updateFourHealth(playerHealth);
-
+          debugger; 
           if(playerHealth <= 0){
             this.updateFourHealth(0)
+            alive = false; 
             statement = name + " has died"
             this.updateFourAlive(); 
             }
@@ -482,8 +481,6 @@ preventBackButton() {
           if(player.alive === false){
             alive = false; 
           }
-        
-        
       }
 
     totalHealth = oneHealth + twoHealth + threeHealth + fourHealth; 
@@ -519,12 +516,10 @@ preventBackButton() {
       
       this.updateStreetCred(this.streetCred);
     
-      if (alive === true){
+      if (player.alive === true){
         statement = name; 
 
         statement += disasterDict[num1].action; //returns the whole statment which is printed to the screen; 
-      }else {
-        statement = ""
       }
     
     }
