@@ -79,7 +79,7 @@ export class WelcomeComponent implements OnInit {
 
   start(){
 
-    //this.playerService.playMusic(); 
+    this.playerService.playMusic(); 
 
     this.loadStart = true; 
     this.router.navigate(['/start'], {skipLocationChange: true})
