@@ -483,7 +483,7 @@ preventBackButton() {
           playerHealth = fourHealth - minusHealthPoints; 
           this.updateFourHealth(playerHealth);
           debugger; 
-          if(playerHealth <= 0){
+          if(playerHealth <= 0 && player.alive === true){
             this.updateFourHealth(0)
             alive = false; 
             statement = name + " has died"
