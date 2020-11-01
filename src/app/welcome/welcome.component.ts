@@ -73,6 +73,7 @@ export class WelcomeComponent implements OnInit {
     })
   }
 
+  
   resume(){
     this.router.navigate([this.current], {skipLocationChange: true})
   }
