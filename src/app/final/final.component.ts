@@ -51,7 +51,7 @@ export class FinalComponent implements OnInit {
   playAgain(){
     
     
-    this.router.navigate(['/welcome'], {skipLocationChange: true}).then(()=>{
+    this.router.navigate(['/start'], {skipLocationChange: true}).then(()=>{
       this.playerService.deleteDoc()
     })
   }

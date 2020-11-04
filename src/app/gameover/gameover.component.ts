@@ -22,8 +22,10 @@ export class GameoverComponent implements OnInit {
   }
 
   playAgain(){
-    this.router.navigate(['/welcome'], {skipLocationChange: true}); 
-    this.playerService.deleteDoc()
+    this.router.navigate(['/start'], {skipLocationChange: true}).then(()=>{
+      this.playerService.deleteDoc()
+    })
+    
       
 
   }

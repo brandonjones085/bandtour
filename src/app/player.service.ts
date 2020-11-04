@@ -394,11 +394,13 @@ preventBackButton() {
           playerHealth = oneHealth - minusHealthPoints; 
           this.updateOneHealth(playerHealth); //sends updated health
 
-          if(playerHealth <= 0){ //
+          if(playerHealth <= 0 && player.alive === true){ //
             this.updateOneHealth(0)
             alive = false; 
             statement = name + " has died"
             this.updateOneAlive(); 
+          }else{
+            statement = ""
           }
 
           if(player.alive === false){
@@ -424,11 +426,13 @@ preventBackButton() {
           playerHealth = twoHealth - minusHealthPoints; 
           this.updateTwoHealth(playerHealth); 
 
-          if(playerHealth <= 0 ){
+          if(playerHealth <= 0 && player.alive === true ){
             this.updateTwoHealth(0)
             alive = false; 
             statement = name + " has died"
             this.updateTwoAlive(); 
+          }else{
+            statement = ""
           }
 
           if(player.alive === false){
@@ -488,6 +492,8 @@ preventBackButton() {
             alive = false; 
             statement = name + " has died"
             this.updateFourAlive(); 
+            }else{
+              statement = ""
             }
 
           if(player.alive === false){
@@ -532,8 +538,6 @@ preventBackButton() {
         statement = name; 
 
         statement += disasterDict[num3].action; //returns the whole statment which is printed to the screen; 
-      }else if(player.alive === false && statement === ""){
-        statement = "NOTHING HAPPENED"
       }
     
     }
