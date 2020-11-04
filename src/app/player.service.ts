@@ -532,6 +532,8 @@ preventBackButton() {
         statement = name; 
 
         statement += disasterDict[num3].action; //returns the whole statment which is printed to the screen; 
+      }else if(player.alive === false && statement === ""){
+        statement = "NOTHING HAPPENED"
       }
     
     }
