@@ -324,7 +324,7 @@ preventBackButton() {
     {action: " got staph infection from a stick 'n poke", points: 20}, 
     {action: " got boot rot from not changing socks", points: 20}, 
     {action: " broke their leg trying to learn a pop shove it", points: 10}, 
-    {action: " took meth", points: 50}, 
+    {action: " got tweaked and fought a cop", points: 50}, 
     {action: " was shanked by a homebum", points: 20}, 
     {action: " got Covid", points: 20}, 
     {action: " got bedbugs", points: 20}, 
@@ -394,13 +394,13 @@ preventBackButton() {
           playerHealth = oneHealth - minusHealthPoints; 
           this.updateOneHealth(playerHealth); //sends updated health
 
-          if(playerHealth <= 0 && player.alive === true){ //
+          if(playerHealth < 0 && player.alive == true){
             this.updateOneHealth(0)
             alive = false; 
+            console.log('one died')
             statement = name + " has died"
+            
             this.updateOneAlive(); 
-          }else{
-            statement = ""
           }
 
           if(player.alive === false){
@@ -426,13 +426,12 @@ preventBackButton() {
           playerHealth = twoHealth - minusHealthPoints; 
           this.updateTwoHealth(playerHealth); 
 
-          if(playerHealth <= 0 && player.alive === true ){
+          if(playerHealth < 0 && player.alive == true){
             this.updateTwoHealth(0)
             alive = false; 
+            console.log('two died')
             statement = name + " has died"
             this.updateTwoAlive(); 
-          }else{
-            statement = ""
           }
 
           if(player.alive === false){
@@ -457,13 +456,13 @@ preventBackButton() {
           playerHealth = threeHealth - minusHealthPoints; 
           this.updateThreeHealth(playerHealth); 
 
-          if(playerHealth <= 0 && player.alive === true){
+          if(playerHealth < 0 && player.alive == true){
+            console.log("three DIED")
             this.updateThreeHealth(0)
             alive = false; 
+
             statement = name + " has died"
             this.updateThreeAlive(); 
-          }else{
-            statement = ""
           }
         
           if(player.alive === false){
@@ -486,15 +485,14 @@ preventBackButton() {
      
           playerHealth = fourHealth - minusHealthPoints; 
           this.updateFourHealth(playerHealth);
-          debugger; 
-          if(playerHealth <= 0 && player.alive === true){
+      
+          if(playerHealth < 0 && player.alive == true){
+            console.log('four died')
             this.updateFourHealth(0)
             alive = false; 
             statement = name + " has died"
             this.updateFourAlive(); 
-            }else{
-              statement = ""
-            }
+          }
 
           if(player.alive === false){
             alive = false; 
@@ -505,7 +503,28 @@ preventBackButton() {
    
 
 
-    //calculates total health status
+
+
+    //calculates streetCred
+   
+      if(this.player.type.type === "gut"){
+       this.streetCred = this.player.one.streetCred + 25; 
+      }else if(this.player.type.type.type ==="ska"){
+        this.streetCred = this.player.one.streetCred +15; 
+      }else{
+        this.streetCred = this.player.one.streetCred + 10; 
+      }
+      
+      this.updateStreetCred(this.streetCred);
+    
+      if (player.alive == true && playerHealth > 0){
+        statement = name; 
+
+        statement += disasterDict[num3].action; //returns the whole statment which is printed to the screen; 
+      }
+
+
+          //calculates total health status
     if(totalHealth >= 250){
       this.health = "Good"; 
     }else if(totalHealth > 150 && totalHealth < 250){
@@ -522,26 +541,13 @@ preventBackButton() {
       this.firestore.collection("player").doc(this.playerid).delete(); 
     }
 
-    //calculates streetCred
-   
-      if(this.player.type.type === "gut"){
-       this.streetCred = this.player.one.streetCred + 25; 
-      }else if(this.player.type.type.type ==="ska"){
-        this.streetCred = this.player.one.streetCred +15; 
-      }else{
-        this.streetCred = this.player.one.streetCred + 10; 
-      }
-      
-      this.updateStreetCred(this.streetCred);
-    
-      if (player.alive === true){
-        statement = name; 
-
-        statement += disasterDict[num3].action; //returns the whole statment which is printed to the screen; 
-      }
     
     }
     return statement; 
+
+
+
+
   }//end of play function
     
 
